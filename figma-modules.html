@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Figma modules · implemented</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --ink:#292929;
+    --mut:rgba(41,41,41,.55);
+    --mut2:rgba(41,41,41,.4);
+    --page:#F1F0EE;          /* warm light-gray page */
+    --cream:#FAF9F6;         /* quote / stat cards */
+    --white:#FFFFFF;
+    --line:rgba(41,41,41,.08);
+    --orange:#E8681C;
+    --purple:#6D28D9;
+    --dark:#191919;
+    --serif:"Martina Plantijn","Georgia","Times New Roman",serif;
+    --sans:"Inter",ui-sans-serif,system-ui,-apple-system,sans-serif;
+    --mono:"Geist Mono",ui-monospace,monospace;
+    --maxw:1220px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--page);-webkit-font-smoothing:antialiased;font-size:16px;line-height:24px}
+  .mod{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mod + .mod{margin-top:150px}
+  .modlabel{font-family:var(--mono);font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--mut2);margin-bottom:22px}
+  .serif{font-family:var(--serif)}
+  body::after{content:"";display:block;height:150px}
+  body::before{content:"";display:block;height:70px}
+
+  /* ============ M1 · FEATURE ============ */
+  .m1{display:flex;align-items:stretch;background:var(--white);border-radius:10px;overflow:hidden}
+  .m1 .content{flex:1 1 0;min-width:0;display:flex;flex-direction:column;justify-content:center;padding:56px 48px 44px}
+  .m1 h2{font-family:var(--serif);font-weight:300;font-size:46px;line-height:56px;letter-spacing:-1.4px;max-width:560px}
+  .m1 .sub{margin-top:30px;font-size:17px;line-height:23px;letter-spacing:-.3px;color:var(--ink);opacity:.5;max-width:530px}
+  .m1 .spacer{height:150px}
+  .m1 .gs{font-size:14px;letter-spacing:-.14px;color:var(--mut2);margin-bottom:12px}
+  .m1 .pills{display:flex;flex-wrap:wrap;gap:8px;max-width:560px}
+  .m1 .pill{padding:6px 12px;border:1px solid var(--line);border-radius:99px;font-size:14px;line-height:20px;letter-spacing:-.14px}
+  .m1 .visual{flex:0 0 46%;position:relative;background:rgba(41,41,41,.04);
+    background-image:radial-gradient(circle, rgba(41,41,41,.09) 1.1px, transparent 1.1px);background-size:15px 15px;
+    display:flex;align-items:center;justify-content:center;min-height:520px}
+  .m1 .rcard{position:relative;width:78%;max-width:430px;background:var(--white);border:1px solid #CFCCC7;border-radius:12px;box-shadow:0 0 0 5px rgba(0,0,0,.04);padding:36px 16px 90px}
+  .m1 .toolbar{position:absolute;top:-26px;left:50%;transform:translateX(-50%);display:flex;gap:9px;align-items:center;background:rgba(255,255,255,.55);backdrop-filter:blur(5px);padding:10px;border-radius:13px;box-shadow:0 1px 7px rgba(0,0,0,.06),0 2px 4px rgba(0,0,0,.03)}
+  .m1 .tb{width:36px;height:36px;border-radius:9px;background:var(--white);box-shadow:0 4px 10px rgba(0,0,0,.06),0 2px 4px rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center}
+  .m1 .tb .g{width:16px;height:16px;border-radius:4px;background:#2b2b2b}
+  .m1 .tb .g.round{border-radius:50%}
+  .m1 .plabel{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.045);padding:3px 9px 3px 4px;border-radius:6px;margin-bottom:26px}
+  .m1 .plabel .dot{width:13px;height:13px;border-radius:4px;background:var(--purple)}
+  .m1 .plabel span{color:var(--purple);font-size:12.5px;line-height:16px}
+  .m1 .crow{margin-bottom:24px}
+  .m1 .crow .t{font-size:14.5px;line-height:20px;letter-spacing:-.14px}
+  .m1 .crow .chk{margin-top:8px;margin-left:8px;width:22px;height:22px;border:1px solid rgba(0,0,0,.18);border-radius:5px;background:#fff}
+
+  /* ============ M2 · PROOF / METRICS ============ */
+  .m2 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .m2 .quote{background:var(--cream);padding:36px 44px 40px}
+  .m2 .qlab{font-size:13px;color:var(--mut2);line-height:18px}
+  .m2 .qnum{font-size:15px;font-weight:600;margin-top:2px;margin-bottom:44px}
+  .m2 .qtext{font-family:var(--serif);font-size:25px;line-height:35px;letter-spacing:-.2px}
+  .m2 .qtext .qm{color:var(--orange)}
+  .m2 .qperson{display:flex;align-items:center;gap:10px;margin-top:56px}
+  .m2 .avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#b9a globally,#7d6a54);background:linear-gradient(135deg,#c2b09c,#6f5d49);flex:0 0 auto}
+  .m2 .qperson .nm{font-size:14.5px;font-weight:600}
+  .m2 .qperson .role{font-size:14.5px;color:var(--mut2)}
+  .m2 .tablecard{background:var(--white);margin-top:8px;padding:26px 40px 30px}
+  .m2 table{width:100%;border-collapse:collapse}
+  .m2 thead th{font-size:12.5px;color:var(--mut2);font-weight:400;text-align:left;padding:14px 12px 12px}
+  .m2 tbody td{padding:20px 12px;border-top:1px solid rgba(41,41,41,.07);vertical-align:middle}
+  .m2 td.rowname{font-size:15.5px;width:36%;padding-left:48px}
+  .m2 .cl{font-size:12px;color:var(--mut2);line-height:17px}
+  .m2 .cv{font-size:14px;line-height:20px;margin-top:2px}
+  .m2 .cv.res{color:var(--orange)}
+  .m2 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .m2 .stat{background:var(--cream);padding:34px 30px 30px;min-height:300px;display:flex;flex-direction:column}
+  .m2 .stat h3{font-size:21px;line-height:28px;font-weight:500;letter-spacing:-.3px;max-width:340px}
+  .m2 .stat .big{margin-top:auto;font-family:var(--serif);font-size:38px;line-height:44px}
+  .m2 .stat .cap{font-size:14.5px;color:var(--mut2);margin-top:4px}
+  .m2 .sec{background:var(--cream);margin-top:8px;padding:64px 44px 0}
+  .m2 .sec h2{font-family:var(--serif);font-weight:400;font-size:46px;line-height:52px;letter-spacing:-.6px}
+  .m2 .sec .p{margin-top:22px;font-size:15.5px;line-height:23px;color:var(--mut);max-width:420px}
+  .m2 .sec .link{display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-size:14.5px;color:var(--ink);text-decoration:none;border-bottom:1px solid rgba(41,41,41,.25);padding-bottom:2px}
+  .m2 .sec .link .ar{font-size:11px;color:var(--mut2);border:1px solid var(--line);border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center}
+  .m2 .secrow{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-top:96px;padding:22px 4px 26px;border-top:1px solid rgba(41,41,41,.08);font-size:13.5px;color:var(--mut)}
+
+  /* ============ M3 · WORKFLOWS ============ */
+  .m3 .head{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:44px}
+  .m3 .head h2{font-size:40px;line-height:50px;font-weight:500;letter-spacing:-.8px}
+  .m3 .head .p{margin-top:24px;font-size:15px;line-height:22px;color:var(--mut);max-width:480px}
+  .m3 .logos{display:flex;flex-direction:column;gap:14px;padding-top:8px}
+  .m3 .lrow{display:flex;gap:26px;flex-wrap:wrap}
+  .m3 .lchip{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:500;color:var(--ink)}
+  .m3 .lchip .b{width:17px;height:17px;border-radius:50%}
+  .m3 .setupcard{background:var(--white);border-radius:10px;padding:52px 56px;min-height:340px;position:relative}
+  .m3 .setupcard .h{font-size:24px;line-height:31px;font-weight:600}
+  .m3 .setupcard .h span{display:block;color:var(--mut2);font-weight:500}
+  .m3 .wfinput{position:absolute;right:56px;top:50%;transform:translateY(-50%);width:46%;max-width:540px;background:var(--white);border:1px solid rgba(41,41,41,.1);border-radius:14px;padding:20px 20px 14px;box-shadow:0 14px 34px rgba(0,0,0,.07)}
+  .m3 .wfinput .ph{font-size:15px;color:var(--mut2)}
+  .m3 .wfinput .bar{display:flex;align-items:center;gap:10px;margin-top:26px;font-size:13px;color:var(--mut)}
+  .m3 .wfinput .bar .c{width:18px;height:18px;border-radius:50%;border:1px solid rgba(41,41,41,.15)}
+  .m3 .wfinput .send{margin-left:auto;width:30px;height:30px;border-radius:50%;background:#EFEEEC;display:flex;align-items:center;justify-content:center;color:var(--mut2);font-size:13px}
+  .m3 .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .m3 .c3{background:var(--white);border-radius:10px;padding:34px 32px 30px;min-height:480px;display:flex;flex-direction:column}
+  .m3 .c3 .eb{font-size:12.5px;color:var(--mut2);margin-bottom:38px}
+  .m3 .c3 h3{font-size:23px;line-height:29px;font-weight:600;letter-spacing:-.3px}
+  .m3 .c3 .d{margin-top:14px;font-size:14px;line-height:20px;color:var(--mut);max-width:280px}
+  .m3 .c3 .viz{margin-top:auto;display:flex;align-items:center;justify-content:center;min-height:150px}
+  .m3 .okrow{display:flex;gap:10px;background:var(--white);border:1px solid rgba(41,41,41,.08);border-radius:12px;padding:14px 16px;box-shadow:0 6px 18px rgba(0,0,0,.05)}
+  .m3 .ok{position:relative;width:26px;height:26px;border-radius:6px;background:#F4F3F1;border:1px solid rgba(41,41,41,.06)}
+  .m3 .ok::after{content:"";position:absolute;top:-5px;right:-5px;width:11px;height:11px;border-radius:50%;background:#1D9E75;border:2px solid #fff}
+  .m3 .iso{position:relative;width:220px;height:150px}
+  .m3 .iso .tile{position:absolute;width:44px;height:44px;border-radius:10px;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.08);transform:rotate(45deg) scaleY(.58)}
+  .m3 .iso .tile i{position:absolute;inset:12px;border-radius:50%;transform:scaleY(1.7) rotate(-45deg)}
+  .m3 .tilerow{display:flex;gap:8px}
+  .m3 .tile2{width:44px;height:52px;border-radius:9px;background:#fff;border:1px solid rgba(41,41,41,.07);box-shadow:0 4px 12px rgba(0,0,0,.04);display:flex;align-items:flex-end;justify-content:center;padding-bottom:5px;font-size:6.5px;color:var(--mut2)}
+  .m3 .libband{background:var(--white);border-radius:10px;margin-top:8px;padding:56px 48px 52px}
+  .m3 .libband h3{font-size:34px;line-height:42px;font-weight:500;letter-spacing:-.6px;margin-bottom:36px}
+  .m3 .libgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .m3 .lib{border:1px solid rgba(41,41,41,.1);border-radius:12px;padding:20px 20px 24px}
+  .m3 .lib .aw{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--mut);margin-bottom:16px}
+  .m3 .lib h4{font-size:15px;font-weight:600}
+  .m3 .lib .d{margin-top:10px;font-size:12.5px;line-height:18.5px;color:var(--mut)}
+  .m3 .cards3b{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+  .m3 .c3b{background:var(--white);border-radius:10px;padding:34px 32px 34px;min-height:430px;display:flex;flex-direction:column}
+  .m3 .c3b .eb{font-size:12.5px;color:var(--mut2);margin-bottom:34px}
+  .m3 .c3b h3{font-size:23px;line-height:29px;font-weight:600;letter-spacing:-.3px}
+  .m3 .c3b .d{margin-top:12px;font-size:14px;line-height:20px;color:var(--mut);max-width:300px}
+  .m3 .c3b .viz{margin-top:auto}
+  .m3 .filein{display:flex;align-items:center;gap:8px;border:1px solid rgba(41,41,41,.12);border-radius:9px;padding:10px 14px;font-size:13px;color:var(--ink);max-width:200px;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,.04)}
+  .m3 .filein .fi{width:13px;height:15px;border:1.4px solid rgba(41,41,41,.5);border-radius:3px}
+  .m3 .mtable{width:100%;border:1px solid rgba(41,41,41,.09);border-radius:8px;overflow:hidden;font-size:12px;color:var(--ink)}
+  .m3 .mtable .hd,.m3 .mtable .rw{display:grid;grid-template-columns:34px 1fr 1fr;border-top:1px solid rgba(41,41,41,.07)}
+  .m3 .mtable .hd{border-top:0;color:var(--mut2)}
+  .m3 .mtable .hd>div,.m3 .mtable .rw>div{padding:7px 10px;border-left:1px solid rgba(41,41,41,.07)}
+  .m3 .mtable .hd>div:first-child,.m3 .mtable .rw>div:first-child{border-left:0;color:var(--mut2)}
+  .m3 .txtarea{border:1px solid rgba(41,41,41,.1);border-radius:9px;background:#F7F6F4;min-height:110px;padding:12px 14px;font-size:13px;color:var(--mut2)}
+
+  /* ============ M4 · BENTO ============ */
+  .m4 .head{margin-bottom:34px}
+  .m4 .eb{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;margin-bottom:16px}
+  .m4 .eb .d{width:8px;height:8px;border-radius:50%;background:var(--ink)}
+  .m4 .head h2{font-size:38px;line-height:46px;font-weight:500;letter-spacing:-.7px}
+  .m4 .head .p{margin-top:16px;font-size:15px;line-height:22px;color:var(--mut);max-width:420px}
+  .m4 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .m4 .cell{background:var(--white);border-radius:10px;padding:28px 28px 26px;min-height:340px;display:flex;flex-direction:column}
+  .m4 .cell .eb2{font-size:12px;color:var(--mut2);margin-bottom:16px}
+  .m4 .cell h3{font-size:20px;line-height:26px;font-weight:600;letter-spacing:-.3px}
+  .m4 .cell .d{margin-top:10px;font-size:13.5px;line-height:19.5px;color:var(--mut);max-width:300px}
+  .m4 .cell .viz{margin-top:auto;min-height:130px;display:flex;align-items:flex-end}
+  .m4 .viz-lines{width:100%;display:flex;flex-direction:column;gap:7px;filter:blur(1.2px);opacity:.6}
+  .m4 .viz-lines i{height:8px;border-radius:4px;background:linear-gradient(90deg,#d9c9f5,#f0d9c9,#c9e0d9)}
+  .m4 svg.net{width:100%;height:130px}
+  .m4 .doc{width:100%;background:#fff;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.09);padding:16px 18px;font-size:11.5px;line-height:17px}
+  .m4 .doc .fade{color:var(--mut2)}
+  .m4 .doc hr{border:0;border-top:1px solid rgba(41,41,41,.1);margin:10px 0}
+  .m4 .inputbar{width:100%;background:#fff;border:1px solid rgba(41,41,41,.1);border-radius:12px;padding:14px;box-shadow:0 8px 22px rgba(0,0,0,.05)}
+  .m4 .inputbar .ph{font-size:12px;color:var(--mut2)}
+  .m4 .inputbar .tabs{display:flex;gap:7px;margin-top:20px}
+  .m4 .inputbar .tabs .t{font-size:11px;padding:5px 10px;border-radius:99px;border:1px solid rgba(41,41,41,.12);color:var(--mut)}
+  .m4 .icon-grid{width:100%;display:grid;grid-template-columns:repeat(3,34px);gap:12px;justify-content:center}
+  .m4 .icon-grid .ic{width:34px;height:34px;border-radius:8px}
+  .m4 .kh{width:100%;background:#fff;border:1px solid rgba(41,41,41,.09);border-radius:9px;padding:12px 14px;display:flex;justify-content:space-between;font-size:12px;color:var(--mut2);box-shadow:0 4px 14px rgba(0,0,0,.04)}
+
+  /* ============ M5 · BENCHMARK ============ */
+  .m5{display:grid;grid-template-columns:5fr 7fr;gap:70px;align-items:start}
+  .m5 .lh h2{font-size:31px;line-height:41px;font-weight:600;letter-spacing:-.5px;max-width:380px}
+  .m5 .lh h2 .mut{color:var(--mut);font-weight:500}
+  .m5 .btn{display:inline-block;margin-top:26px;background:#111;color:#fff;font-size:15px;font-weight:500;padding:12px 22px;border-radius:99px;text-decoration:none}
+  .m5 .bigstat{margin-top:64px}
+  .m5 .bigstat .n{font-family:var(--serif);font-weight:300;font-size:130px;line-height:1;color:var(--orange);letter-spacing:-4px}
+  .m5 .bigstat .n .pct{font-size:56px;letter-spacing:0;vertical-align:14px}
+  .m5 .bigstat .cap{font-size:17px;line-height:25px;margin-top:14px;max-width:260px}
+  .m5 .tabs{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:56px}
+  .m5 .tabs .t{font-size:15px;padding:11px 20px;border-radius:99px;border:1px solid rgba(41,41,41,.13);color:var(--mut)}
+  .m5 .tabs .t.on{background:#E8E6E3;color:var(--ink);border-color:transparent;font-weight:500}
+  .m5 .barrow{display:flex;align-items:center;gap:22px;margin-bottom:30px}
+  .m5 .barrow .lbl{font-family:var(--mono);font-size:13px;color:var(--ink);width:64px;text-align:right;flex:0 0 auto}
+  .m5 .dgrid{display:grid;grid-auto-flow:column;grid-template-rows:repeat(3,4px);gap:3px;justify-content:start}
+  .m5 .dgrid i{width:4px;height:4px;border-radius:50%;background:#C9C7C4}
+  .m5 .barrow.hi .dgrid i{background:var(--orange)}
+  .m5 .note{font-size:16px;line-height:24px;color:var(--mut);margin-top:56px;max-width:560px}
+  .m5 .note a{color:var(--orange);text-decoration:none}
+
+  /* ============ M6 · DARK CTA ============ */
+  .m6{position:relative;background:var(--dark);border-radius:12px;overflow:hidden;min-height:560px;display:flex;align-items:center;justify-content:center;text-align:center}
+  .m6 h2{font-size:44px;line-height:56px;font-weight:500;letter-spacing:-.8px;color:#fff}
+  .m6 .btn{display:inline-block;margin-top:30px;background:#fff;color:#111;font-size:15px;font-weight:500;padding:12px 24px;border-radius:99px;text-decoration:none}
+  .m6 .app{position:absolute;width:56px;height:56px;border-radius:14px;box-shadow:0 10px 26px rgba(0,0,0,.4)}
+  .m6 .app.r1{transform:rotate(-14deg)} .m6 .app.r2{transform:rotate(10deg)} .m6 .app.r3{transform:rotate(22deg)} .m6 .app.r4{transform:rotate(-24deg)}
+  .m6 .a1{top:-3%;left:22%;background:#4A154B}
+  .m6 .a2{top:22%;left:16%;background:#fff}
+  .m6 .a3{top:46%;left:14%;background:#FF4A00}
+  .m6 .a4{top:72%;left:16%;background:#fff}
+  .m6 .a5{bottom:-4%;left:24%;background:#1A73E8}
+  .m6 .a6{top:-3%;right:22%;background:#0B57D0}
+  .m6 .a7{top:22%;right:16%;background:#E8543F}
+  .m6 .a8{top:46%;right:14%;background:#fff}
+  .m6 .a9{top:72%;right:16%;background:#111;border:1px solid #2c2c2c}
+  .m6 .a10{bottom:-4%;right:24%;background:#fff}
+  .m6 .app .inner{position:absolute;inset:14px;border-radius:8px}
+
+  @media(max-width:960px){
+    .m1{flex-direction:column}.m1 .visual{flex:none;width:100%;min-height:420px}
+    .m2 .quotes,.m2 .stats,.m3 .cards3,.m3 .cards3b,.m4 .grid,.m5{grid-template-columns:1fr}
+    .m3 .libgrid{grid-template-columns:1fr 1fr}
+    .m3 .wfinput{position:static;transform:none;width:100%;margin-top:32px}
+    .mod + .mod{margin-top:90px}
+    .m2 td.rowname{padding-left:12px}
+    .m5{gap:44px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================== MODULE 1 ==================== -->
+<section class="mod">
+  <div class="modlabel">Module 01 · Feature</div>
+  <div class="m1">
+    <div class="content">
+      <h2>Lorem ipsum dolor sit amet consectetur adipiscing elit</h2>
+      <p class="sub">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco — laboris nisi ut aliquip ex ea commodo.</p>
+      <div class="spacer"></div>
+      <div class="gs">Lorem ipsum dolor sit a</div>
+      <div class="pills">
+        <span class="pill">Lorem ipsum dolor sit amet</span>
+        <span class="pill">Consectetur adipiscing elit sed</span>
+        <span class="pill">Sed do eiusmod tempor incidi</span>
+        <span class="pill">Ut labore et dolore magna al</span>
+        <span class="pill">Lorem ipsum dolor</span>
+        <span class="pill">Consectetur adipiscing</span>
+      </div>
+    </div>
+    <div class="visual">
+      <div class="rcard">
+        <div class="toolbar">
+          <div class="tb"><div class="g"></div></div>
+          <div class="tb"><div class="g round"></div></div>
+          <div class="tb"><div class="g"></div></div>
+        </div>
+        <div class="plabel"><span class="dot"></span><span>Lorem ipsum dolor sit amet consecte adipis</span></div>
+        <div class="crow"><div class="t">Lorem ipsum dolor sit amet consectetur adipisc</div><div class="chk"></div></div>
+        <div class="crow"><div class="t">Consectetur adipiscing elit sed eius</div><div class="chk"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODULE 2 ==================== -->
+<section class="mod">
+  <div class="modlabel">Module 02 · Metrics</div>
+  <div class="m2">
+    <div class="quotes">
+      <div class="quote">
+        <div class="qlab">Lorem ipsum dolor sit amet consecte</div>
+        <div class="qnum">95%</div>
+        <p class="qtext"><span class="qm">"</span>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip.<span class="qm">"</span></p>
+        <div class="qperson"><span class="avatar"></span><span class="nm">Lorem Ipsumdolor</span><span class="role">Consectetur elit</span></div>
+      </div>
+      <div class="quote">
+        <div class="qlab">Lorem ipsum dolor sit</div>
+        <div class="qnum">35%</div>
+        <p class="qtext"><span class="qm">"</span>Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud.<span class="qm">"</span></p>
+        <div class="qperson"><span class="avatar"></span><span class="nm">Lorem Ipsu</span><span class="role">Dolor consectetur</span></div>
+      </div>
+    </div>
+
+    <div class="tablecard">
+      <table>
+        <thead><tr><th style="width:36%"></th><th>Lorem</th><th>Ipsum</th><th>Dolor</th></tr></thead>
+        <tbody>
+          <tr><td class="rowname">Lorem ipsum dolor sit amet</td>
+            <td><div class="cl">Lorem ipsum d</div><div class="cv">Dolor sit</div></td>
+            <td><div class="cl">Lorem ipsum d</div><div class="cv">1/10th</div></td>
+            <td><div class="cl">Lorem ipsum</div><div class="cv res">20x faster</div></td></tr>
+          <tr><td class="rowname">Consectetur adipiscing elit sed</td>
+            <td><div class="cl">Lorem ipsu</div><div class="cv">Dolor</div></td>
+            <td><div class="cl">Lorem ipsu</div><div class="cv">Adipiscing</div></td>
+            <td><div class="cl">Consectetur adipi</div><div class="cv res">35% increase in 1st month</div></td></tr>
+          <tr><td class="rowname">Sed do eiusmod tempor in</td>
+            <td><div class="cl">Lorem ipsum </div><div class="cv">45–60 min</div></td>
+            <td><div class="cl">Lorem ipsum </div><div class="cv">&lt;15 min</div></td>
+            <td><div class="cl">Sed do eiusmod te</div><div class="cv res">$1,000 → $100</div></td></tr>
+          <tr><td class="rowname">Ut labore et dolore magna aliqua</td>
+            <td><div class="cl">Lorem ipsum </div><div class="cv">~40 min</div></td>
+            <td><div class="cl">Lorem ipsum </div><div class="cv">Adipiscing</div></td>
+            <td><div class="cl">Ut labore et do</div><div class="cv res">90% less</div></td></tr>
+          <tr><td class="rowname">Ut enim ad minim veniam</td>
+            <td><div class="cl">Lorem ipsum d</div><div class="cv">~60 min</div></td>
+            <td><div class="cl">Lorem ipsum d</div><div class="cv">~6 min</div></td>
+            <td><div class="cl">Ut enim ad mini</div><div class="cv res">90% less</div></td></tr>
+          <tr><td class="rowname">Quis nostrud exer</td>
+            <td><div class="cl">Lorem ipsum dolor</div><div class="cv">~45 claims</div></td>
+            <td><div class="cl">Lorem ipsum dolor</div><div class="cv">+60 claims</div></td>
+            <td><div class="cl">Quis nostrud ex</div><div class="cv res">33% capacity increase</div></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit sed</h3><div class="big">200+</div><div class="cap">Lorem ipsum dolor sit amet consec</div></div>
+      <div class="stat"><h3>Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore magna</h3><div class="big">3×</div><div class="cap">Consectetur adipiscing elit sed do eiusmod tempo</div></div>
+      <div class="stat"><h3>Sed do eiusmod tempor incididunt ut labore et dolore magna aliq</h3><div class="big">137%</div><div class="cap">Sed do eiusmod tempor incididunt ut</div></div>
+    </div>
+
+    <div class="sec">
+      <h2>Lorem ipsum dolor sit ame.</h2>
+      <p class="p">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore.</p>
+      <a class="link" href="#">Lorem ipsum dolor sit ame <span class="ar">↗</span></a>
+      <div class="secrow">
+        <span>Lorem ipsum dolor sit am</span><span>Consectetur adipisci</span><span>Sed do eiusmod tempor incidid</span><span>Ut labore et dolore magna al</span><span>Ut enim ad minim venia</span><span>Quis nostr</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODULE 3 ==================== -->
+<section class="mod">
+  <div class="modlabel">Module 03 · Workflows</div>
+  <div class="m3">
+    <div class="head">
+      <div>
+        <h2>Lorem ipsum dolor sit amet<br/>consectetur adipiscing elit se</h2>
+        <p class="p">Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore — et dolore magna aliqua ut enim minim.</p>
+      </div>
+      <div class="logos">
+        <div class="lrow">
+          <span class="lchip"><span class="b" style="background:#F05A28"></span>Lorem</span>
+          <span class="lchip"><span class="b" style="background:#262627"></span>Ipsum</span>
+          <span class="lchip"><span class="b" style="background:#5E6AD2"></span>Dolor</span>
+          <span class="lchip"><span class="b" style="background:#0078D4"></span>Consectetur adip</span>
+          <span class="lchip"><span class="b" style="background:#5059C9"></span>Adipiscing elit</span>
+        </div>
+        <div class="lrow">
+          <span class="lchip"><span class="b" style="background:#16A34A"></span>Tempor</span>
+          <span class="lchip"><span class="b" style="background:#DC2626"></span>Labore</span>
+          <span class="lchip"><span class="b" style="background:#7C3AED"></span>Dolo</span>
+          <span class="lchip"><span class="b" style="background:#4A154B"></span>Magna</span>
+          <span class="lchip"><span class="b" style="background:#1F8CEB"></span>Aliqua</span>
+          <span class="lchip"><span class="b" style="background:#EA4335"></span>Enim</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="setupcard">
+      <div class="h">Lorem ipsum dolor <span>Sit amet elit.</span></div>
+      <div class="wfinput">
+        <div class="ph">Lorem ipsum dolor...</div>
+        <div class="bar"><span class="c"></span><span class="c"></span> Consectetur <span class="send">→</span></div>
+      </div>
+    </div>
+
+    <div class="cards3">
+      <div class="c3"><div class="eb">Lorem ipsum</div><h3>Lorem ipsum dolor si</h3><p class="d">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="viz"><div class="okrow"><span class="ok"></span><span class="ok"></span><span class="ok"></span><span class="ok"></span><span class="ok"></span><span class="ok"></span><span class="ok"></span></div></div></div>
+      <div class="c3"><div class="eb">1,400+ consectetur</div><h3>Sit amet, consectetur, adipis</h3><p class="d">Lorem ipsum dolor sit amet 1,400+ elit. Consectetur adipiscing et dolore magna aliqua sit amet, dolor sit, ut labore.</p>
+        <div class="viz"><div class="iso">
+          <span class="tile" style="left:88px;top:6px"><i style="background:#EA4335"></i></span>
+          <span class="tile" style="left:40px;top:44px"><i style="background:#34A853"></i></span>
+          <span class="tile" style="left:136px;top:44px"><i style="background:#111"></i></span>
+          <span class="tile" style="left:88px;top:82px"><i style="background:#4285F4"></i></span>
+          <span class="tile" style="left:40px;top:100px;opacity:.85"><i style="background:#FBBC05"></i></span>
+        </div></div></div>
+      <div class="c3"><div class="eb">Consectetur ipsu</div><h3>Lorem ipsum, dolor sit, amet consec</h3><p class="d">Lorem ipsum, dolor sit, amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua adip.</p>
+        <div class="viz"><div class="tilerow"><span class="tile2">Lorem</span><span class="tile2">Ipsum</span><span class="tile2">Dolor</span><span class="tile2">Consect</span><span class="tile2">Elit</span><span class="tile2">Sed</span></div></div></div>
+    </div>
+
+    <div class="libband">
+      <h3>Lorem ipsum dolor sit amet consectetur elit</h3>
+      <div class="libgrid">
+        <div class="lib"><span class="aw">Lorem ipsum 🤖 dolor</span><h4>Lorem + Ipsum</h4><p class="d">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
+        <div class="lib"><span class="aw">Lorem ipsum 🤖 dolor</span><h4>Dolor + Sit Amet</h4><p class="d">Consectetur adipiscing elit sed do eiusmod tempor incididunt ut "labore" et dolore magna aliqua, ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo dolor amet elit.</p></div>
+        <div class="lib"><span class="aw">Lorem ipsum 🤖 dolor</span><h4>Consectetur + Adipiscing</h4><p class="d">Sed do eiusmod tempor incididunt. Lorem ipsum monitors your dolor for new consectetur, uses AI to extract key adipiscing, and instantly populates your firm's lorem ipsum in dolor.</p></div>
+        <div class="lib"><span class="aw">Lorem ipsum 🤖 dolor</span><h4>Sed do eiusmod + Tempor</h4><p class="d">Ut labore et dolore magna aliqua. Pull the latest lorem from ipsum, run the dolor sit amet against your consectetur, and complete an MBR adipiscing in elit tempor with AI-written summaries.</p></div>
+      </div>
+    </div>
+
+    <div class="cards3b">
+      <div class="c3b"><div class="eb">Lorem ips</div><h3>Lorem ipsum dolor sit</h3><p class="d">Lorem ipsum dolor sit amet consectetur. Adipiscing elit sed do eiusmod tempor inc.</p>
+        <div class="viz"><div class="filein"><span class="fi"></span>Lorem</div></div></div>
+      <div class="c3b"><div class="eb">Consectetu</div><h3>Consectetur adipiscing</h3><p class="d">Consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div class="viz"><div class="mtable">
+          <div class="hd"><div>#</div><div>▤ Lorem</div><div>≡ Ipsum</div></div>
+          <div class="rw"><div>1</div><div>Lore</div><div></div></div>
+          <div class="rw"><div>2</div><div>Ipsum</div><div></div></div>
+          <div class="rw"><div>3</div><div>Do</div><div></div></div>
+          <div class="rw"><div>4</div><div>Elite</div><div></div></div>
+          <div class="rw"><div>5</div><div>Amets</div><div></div></div>
+        </div></div></div>
+      <div class="c3b"><div class="eb">Adipisci</div><h3>Sed do eiusmod tempor inc</h3><p class="d">Sed do eiusmod tempor incididunt. Lorem ipsum dolor sit consecte.</p>
+        <div class="viz"><div class="txtarea">Lorem ipsum dolor...</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODULE 4 ==================== -->
+<section class="mod">
+  <div class="modlabel">Module 04 · Bento</div>
+  <div class="m4">
+    <div class="head">
+      <span class="eb"><span class="d"></span>Lorem ipsum dolor sit consectetur</span>
+      <h2>Lorem ipsum dolor sit</h2>
+      <p class="p">Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore mag.</p>
+    </div>
+    <div class="grid">
+      <div class="cell"><div class="eb2">Lorem ips</div><h3>Lorem ipsum dolor, sit amet consec</h3><p class="d">Lorem ipsum dolor sit amet, consectetur, adipiscing across your elit, sed do, ut labore. Non magna aliqua.</p>
+        <div class="viz"><div class="viz-lines"><i style="width:92%"></i><i style="width:76%"></i><i style="width:84%"></i><i style="width:64%"></i><i style="width:71%"></i></div></div></div>
+      <div class="cell"><div class="eb2">Consectetur el</div><h3>Sed do eiusmod tempor, ut labore ali</h3><p class="d">Lorem ipsum builds a live map of entities, relationships, and figures across your documents. Ask a question in dolor sit amet. Get an answer with full consectetur.</p>
+        <div class="viz"><svg class="net" viewBox="0 0 300 130" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g stroke="#DCD4E8" stroke-width="1" opacity=".7">
+            <line x1="150" y1="66" x2="80" y2="32"/><line x1="150" y1="66" x2="222" y2="42"/><line x1="150" y1="66" x2="112" y2="102"/><line x1="150" y1="66" x2="212" y2="96"/><line x1="80" y1="32" x2="40" y2="60"/><line x1="222" y1="42" x2="262" y2="76"/><line x1="112" y1="102" x2="60" y2="96"/>
+          </g>
+          <circle cx="150" cy="66" r="4" fill="#6D28D9"/><circle cx="80" cy="32" r="3" fill="#E8681C"/><circle cx="222" cy="42" r="3" fill="#1D9E75"/><circle cx="112" cy="102" r="2.5" fill="#9A96A6"/><circle cx="212" cy="96" r="2.5" fill="#E8681C"/><circle cx="40" cy="60" r="2.5" fill="#9A96A6"/><circle cx="262" cy="76" r="2.5" fill="#4285F4"/><circle cx="60" cy="96" r="2" fill="#C9C5D2"/><circle cx="184" cy="20" r="2" fill="#C9C5D2"/><circle cx="252" cy="26" r="2" fill="#C9C5D2"/>
+        </svg></div></div>
+      <div class="cell"><div class="eb2">Lorem ipsum</div><h3>Lorem ipsum dol. Sit amet consec.</h3><p class="d">Lorem ipsum, dolor sit, and amet is cited to the exact consectetur it came from. Adipiscing elit verify anything in dolor.</p>
+        <div class="viz"><div class="doc">Lorem ipsum dolor sit amet <span class="fade">consec</span> adipiscing, elit within 30 days. In case of tempor, both parties first attempt magna aliqua before ullamco.<hr/><span class="fade">¹ Ut labore et dolore: additional magna aliqua ut enim ad minim veniam quis nostrud exer 15 days.</span></div></div></div>
+      <div class="cell"><div class="eb2">Lorem</div><h3>Consectetur adipiscing, elit se</h3><p class="d">Sed do eiusmod tempor incididunt. Lorem ipsum applies it to every dolor, every sit, every amet.</p>
+        <div class="viz"><div class="inputbar"><div class="ph">Lorem ipsum / dolor sit ame</div><div class="tabs"><span class="t">◈ Lorem</span><span class="t">◇ Ipsum</span><span class="t">○ Dolor</span></div></div></div></div>
+      <div class="cell"><div class="eb2">Lorem ipsum consec</div><h3>300+ lorem, sit consectet</h3><p class="d">Lorem, ipsum, dolor sit, consectetur, adipiscing: elit via lorem or sed do eiusmod.</p>
+        <div class="viz"><div class="icon-grid"><span class="ic" style="background:#2563EB"></span><span class="ic" style="background:#1E2A3A"></span><span class="ic" style="background:#0F766E"></span><span class="ic" style="background:#0EA5E9"></span><span class="ic" style="background:#DC2626"></span><span class="ic" style="background:#B91C1C"></span><span class="ic" style="background:#111"></span><span class="ic" style="background:#F59E0B"></span><span class="ic" style="background:#2684FF"></span></div></div></div>
+      <div class="cell"><div class="eb2">Consectetur ad</div><h3>Lorem ipsum dolor, sit amet consec</h3><p class="d">Lorem ipsum dolor, sit amet, consectetur adipiscing, and elit sed do, tempor et labore across every magna aliqua ut enim ad minim veniam.</p>
+        <div class="viz"><div class="kh"><span>Lorem</span><span>Ipsum</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODULE 5 ==================== -->
+<section class="mod">
+  <div class="modlabel">Module 05 · Benchmark</div>
+  <div class="m5">
+    <div class="lh">
+      <h2>Lorem ipsum sit. <span class="mut">Consectetur adipiscing elit sed do eiusmod tempor.</span></h2>
+      <a class="btn" href="#">Lorem ipsum dolor</a>
+      <div class="bigstat">
+        <div class="n">24<span class="pct">%</span></div>
+        <div class="cap">consectetur adipiscing elit sed do eiusmod tempor incid</div>
+      </div>
+    </div>
+    <div>
+      <div class="tabs">
+        <span class="t on">Lorem ipsum dolor</span>
+        <span class="t">Consectetur</span>
+        <span class="t">Adipiscing eli</span>
+        <span class="t">Sed do eiusmod t</span>
+      </div>
+      <div id="bars"></div>
+      <p class="note">Lorem-3, our consectetur adipiscing elit tempor, ranks #1 across all relevant lorem per <a href="#">Lorem Ipsum Dolor (2025)</a> consectetur adipis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== MODULE 6 ==================== -->
+<section class="mod">
+  <div class="modlabel">Module 06 · Dark CTA</div>
+  <div class="m6">
+    <span class="app a1 r1"><span class="inner" style="background:#7C3085;border-radius:50%"></span></span>
+    <span class="app a2 r2"><span class="inner" style="background:linear-gradient(135deg,#EA4335,#FBBC05,#34A853,#4285F4)"></span></span>
+    <span class="app a3 r3"></span>
+    <span class="app a4 r4"><span class="inner" style="background:linear-gradient(135deg,#3776AB,#FFD43B);border-radius:50%"></span></span>
+    <span class="app a5 r1"><span class="inner" style="background:#fff;border-radius:4px"></span></span>
+    <span class="app a6 r2"><span class="inner" style="background:#fff;transform:rotate(45deg)"></span></span>
+    <span class="app a7 r4"><span class="inner" style="background:#fff;border-radius:50%"></span></span>
+    <span class="app a8 r3"><span class="inner" style="background:#2684FF;border-radius:6px"></span></span>
+    <span class="app a9 r1"><span class="inner" style="background:#fff;border-radius:50%;opacity:.9"></span></span>
+    <span class="app a10 r2"><span class="inner" style="background:linear-gradient(135deg,#34A853,#FBBC05,#4285F4)"></span></span>
+    <div>
+      <h2>Lorem ipsum dolor<br/>sit amet consectet?</h2>
+      <a class="btn" href="#">Lorem ipsum do</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Lorem dot bars: dense 3-row dot grids
+  var rows = [
+    {lbl:"LOREM", cols:96, hi:true},
+    {lbl:"IPSUM", cols:60, hi:false},
+    {lbl:"DOLOR", cols:52, hi:false},
+    {lbl:"AMET", cols:44, hi:false}
+  ];
+  var host = document.getElementById("bars");
+  rows.forEach(function(r){
+    var row = document.createElement("div");
+    row.className = "barrow" + (r.hi ? " hi" : "");
+    var lbl = document.createElement("div"); lbl.className="lbl"; lbl.textContent=r.lbl;
+    var grid = document.createElement("div"); grid.className="dgrid";
+    for(var i=0;i<r.cols*3;i++){ grid.appendChild(document.createElement("i")); }
+    row.appendChild(lbl); row.appendChild(grid); host.appendChild(row);
+  });
+</script>
+</body>
+</html>

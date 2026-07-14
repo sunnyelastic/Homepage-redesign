@@ -1,0 +1,1955 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Elastic homepage redesign · Steps 1 through 5</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --black:#000000;--ink:#1C1E23;--lighter-ink:#69707D;--blue:#0B64DD;
+    --light-gray:#F5F7FA;--midnight:#16222F;--line:#D8DDE4;--line2:#E6EAF0;--white:#FFFFFF;--teal:#00776E;
+    --display:"Mier B","MierB","Mier",ui-sans-serif,"Helvetica Neue",Arial,sans-serif;
+    --body:"Inter",ui-sans-serif,system-ui,-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--white);color:var(--ink);font-family:var(--body);font-size:16px;line-height:26px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+
+  /* header */
+  .head{padding:48px 0 20px}
+  .kicker{font-family:var(--display);font-weight:700;font-size:13px;line-height:22px;color:var(--lighter-ink);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px}
+  .head h1{font-family:var(--display);font-weight:800;font-size:34px;line-height:42px;color:var(--black)}
+
+  /* tab nav */
+  .tabs{display:flex;gap:0;border-bottom:1px solid var(--line);margin-top:28px;position:sticky;top:0;background:var(--white);z-index:5;padding-top:12px}
+  .tab{background:transparent;border:0;border-bottom:3px solid transparent;padding:14px 22px;font-family:var(--display);font-weight:700;font-size:14px;line-height:20px;color:var(--lighter-ink);cursor:pointer;letter-spacing:.3px;transition:color .15s,border-color .15s}
+  .tab:hover{color:var(--ink)}
+  .tab.on{color:var(--black);border-bottom-color:var(--blue)}
+  .tab .n{color:var(--lighter-ink);font-weight:700;margin-right:8px}
+  .tab.on .n{color:var(--blue)}
+
+  /* pane visibility */
+  .pane{display:none;padding:36px 0 80px}
+  .pane.on{display:block}
+  .pane-intro{max-width:720px;margin-bottom:32px}
+  .pane-intro h2{font-family:var(--display);font-weight:800;font-size:26px;line-height:32px;color:var(--black);margin-bottom:10px}
+  .pane-intro p{font-family:var(--body);font-size:15px;line-height:24px;color:var(--lighter-ink)}
+
+  /* ==================== STEP 1 ==================== */
+  .s1 .correction{margin-bottom:22px;padding:14px 18px;background:var(--light-gray);border-radius:8px;max-width:820px;font-size:14px;line-height:22px;color:var(--ink)}
+  .s1 .correction b{color:var(--black)}
+  .s1 table{width:100%;border-collapse:collapse}
+  .s1 th{font-family:var(--display);font-weight:700;font-size:11px;line-height:16px;letter-spacing:1px;text-transform:uppercase;color:var(--lighter-ink);text-align:left;padding:12px 12px;border-bottom:1px solid var(--ink);vertical-align:bottom}
+  .s1 td{font-family:var(--body);font-size:13.5px;line-height:20px;color:var(--ink);padding:14px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+  .s1 td.sec{width:15%}
+  .s1 td.sec .n{font-family:var(--display);font-weight:800;font-size:12px;color:var(--lighter-ink);display:block;margin-bottom:3px}
+  .s1 td.sec .nm{font-family:var(--display);font-weight:700;font-size:14px;line-height:18px;color:var(--black)}
+  .s1 td.ours{width:38%}
+  .s1 td.seo{width:32%}
+  .s1 td.v{width:15%}
+  .s1 .lens{font-family:var(--display);font-weight:700;font-size:9.5px;letter-spacing:.4px;text-transform:uppercase;color:var(--lighter-ink);margin-right:4px}
+  .s1 .tag{font-family:var(--display);font-weight:700;font-size:10px;line-height:15px;letter-spacing:.5px;text-transform:uppercase;padding:3px 8px;border-radius:100px;white-space:nowrap;display:inline-block}
+  .s1 .tag.agree{border:1px solid var(--teal);color:var(--teal)}
+  .s1 .tag.keep{border:1px solid var(--line);color:var(--lighter-ink)}
+  .s1 .tag.delta{background:var(--blue);color:var(--white)}
+  .s1 .vwhy{display:block;margin-top:6px;color:var(--lighter-ink);font-size:12px;line-height:18px}
+  .s1 .cross{background:var(--light-gray);border-radius:12px;padding:22px 24px;margin-top:26px}
+  .s1 .cross h3{font-family:var(--display);font-weight:800;font-size:16px;line-height:22px;color:var(--black);margin-bottom:6px}
+  .s1 .cross p{font-size:13px;line-height:20px;color:var(--ink);max-width:820px}
+  .s1 .cross ul{margin:10px 0 0 0;padding:0;list-style:none}
+  .s1 .cross li{font-size:13px;line-height:20px;color:var(--ink);padding:5px 0 5px 14px;border-left:2px solid var(--blue);margin-bottom:6px}
+  .s1 .cross li b{font-weight:600}
+
+  /* ==================== STEP 2 ==================== */
+  .s2 .flows{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+  .col-label{margin-bottom:14px}
+  .col-label .name{font-family:var(--display);font-weight:800;font-size:19px;line-height:24px;color:var(--black)}
+  .col-label .why{font-family:var(--body);font-size:13px;line-height:19px;color:var(--lighter-ink);margin-top:2px}
+
+  /* browser chrome mock */
+  .browser{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--white);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .browser .chrome{background:var(--light-gray);padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line)}
+  .dots{display:flex;gap:5px}
+  .dots span{width:10px;height:10px;border-radius:50%;background:#D8DDE4;display:inline-block}
+  .dots span:nth-child(1){background:#FF5F57}
+  .dots span:nth-child(2){background:#FEBC2E}
+  .dots span:nth-child(3){background:#28C840}
+  .addr{flex:1;background:var(--white);border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--lighter-ink);text-align:center}
+  .page{padding:0;background:var(--white)}
+
+  /* section boxes for step 2 (low-fi, no annotation) */
+  .box{border-top:1px solid var(--line2);background:var(--white);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;position:relative}
+  .box:first-child{border-top:0}
+  .box .idx{font-family:var(--display);font-weight:800;font-size:10px;color:var(--lighter-ink);letter-spacing:.5px}
+  .box .lbl{font-family:var(--display);font-weight:700;font-size:15px;line-height:19px;color:var(--black);margin-top:2px}
+  .box .sk{height:6px;border-radius:3px;background:var(--line2);margin-top:10px}
+  .box .sk.w70{width:70%} .box .sk.w52{width:52%} .box .sk.w60{width:60%} .box .sk.w40{width:40%}
+
+  /* section-specific heights, SAME between Option 1 and Option 2, so they align */
+  .box.h-announce{height:34px;padding:8px 18px;background:var(--light-gray)}
+  .box.h-announce .lbl{font-size:12px;line-height:14px;margin:0}
+  .box.h-announce .idx{display:none}
+  .box.h-hero{height:200px}
+  .box.h-trust{height:70px}
+  .box.h-platform{height:230px;background:var(--light-gray)}
+  .box.h-solutions{height:200px}
+  .box.h-proof{height:160px}
+  .box.h-stories{height:150px;background:var(--light-gray)}
+  .box.h-analyst{height:130px}
+  .box.h-integrations{height:70px}
+  .box.h-getstarted{height:180px;background:var(--light-gray)}
+  .box.h-faq{height:150px}
+  .box.h-close{height:120px;background:var(--midnight)}
+  .box.h-proof-big{height:400px;background:var(--light-gray)}
+  .box .sk-sub{font-family:var(--body);font-size:11px;color:var(--lighter-ink);margin-top:6px;letter-spacing:.2px}
+  .box.h-close .lbl{color:var(--white)} .box.h-close .idx{color:#6B7482} .box.h-close .sk{background:#2A3543}
+
+  /* moved sections get a blue outline */
+  .box.moved{outline:2px solid var(--blue);outline-offset:-2px}
+  .movepin{position:absolute;top:8px;right:8px;font-family:var(--display);font-weight:700;font-size:9px;letter-spacing:.4px;text-transform:uppercase;background:var(--blue);color:var(--white);padding:2px 7px;border-radius:100px}
+
+  /* ==================== STEP 3 ==================== */
+  .s3 .diagram{margin-bottom:56px;background:var(--white)}
+  .s3 .diaghead{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--line2)}
+  .s3 .diaghead .name{font-family:var(--display);font-weight:800;font-size:22px;line-height:28px;color:var(--black)}
+  .s3 .diaghead .why{font-family:var(--body);font-size:14px;line-height:21px;color:var(--lighter-ink)}
+
+  /* three flex columns, each item has an explicit height so rows align across columns */
+  .s3 .diag-grid{display:grid;grid-template-columns:380px 68px 1fr;gap:0;align-items:stretch}
+  .s3 .col-mock, .s3 .col-conn, .s3 .col-callouts{display:flex;flex-direction:column}
+  .s3 .col-mock{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--white);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .s3 .col-mock .chrome{background:var(--light-gray);padding:8px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);flex:none;height:36px}
+  .s3 .col-conn .spacer, .s3 .col-callouts .spacer{height:36px;flex:none}
+
+  /* the section-heights are the same class on ALL three columns so rows align */
+  .s3 .row-h-announce{height:34px;flex:none}
+  .s3 .row-h-hero{height:200px;flex:none}
+  .s3 .row-h-trust{height:70px;flex:none}
+  .s3 .row-h-platform{height:230px;flex:none}
+  .s3 .row-h-solutions{height:200px;flex:none}
+  .s3 .row-h-proof{height:160px;flex:none}
+  .s3 .row-h-stories{height:150px;flex:none}
+  .s3 .row-h-analyst{height:130px;flex:none}
+  .s3 .row-h-integrations{height:70px;flex:none}
+  .s3 .row-h-getstarted{height:180px;flex:none}
+  .s3 .row-h-faq{height:150px;flex:none}
+  .s3 .row-h-close{height:120px;flex:none}
+  .s3 .row-h-proof-big{height:400px;flex:none}
+
+  /* section boxes inside the mock */
+  .s3 .col-mock .box{border-top:1px solid var(--line2);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;background:var(--white);position:relative;overflow:hidden}
+  .s3 .col-mock .box:first-of-type{border-top:0}
+  .s3 .col-mock .box .idx{font-family:var(--display);font-weight:800;font-size:10px;color:var(--lighter-ink);letter-spacing:.5px}
+  .s3 .col-mock .box .lbl{font-family:var(--display);font-weight:700;font-size:15px;line-height:19px;color:var(--black);margin-top:2px}
+  .s3 .col-mock .box .sk{height:6px;border-radius:3px;background:var(--line2);margin-top:8px}
+  .s3 .col-mock .box .sk.w70{width:70%} .s3 .col-mock .box .sk.w60{width:60%} .s3 .col-mock .box .sk.w52{width:52%}
+  .s3 .col-mock .box.row-h-announce{padding:8px 18px;background:var(--light-gray)}
+  .s3 .col-mock .box.row-h-announce .lbl{font-size:12px;line-height:14px;margin:0}
+  .s3 .col-mock .box.row-h-announce .idx{display:none}
+  .s3 .col-mock .box.row-h-platform{background:var(--light-gray)}
+  .s3 .col-mock .box.row-h-stories{background:var(--light-gray)}
+  .s3 .col-mock .box.row-h-getstarted{background:var(--light-gray)}
+  .s3 .col-mock .box.row-h-proof-big{background:var(--light-gray)}
+  .s3 .col-mock .box.row-h-close{background:var(--midnight)}
+  .s3 .col-mock .box.row-h-close .lbl{color:var(--white)} .s3 .col-mock .box.row-h-close .idx{color:#6B7482} .s3 .col-mock .box.row-h-close .sk{background:#2A3543}
+  .s3 .col-mock .box.moved{outline:2px solid var(--blue);outline-offset:-2px;z-index:1}
+
+  /* connectors in the middle column, one per row, dotted line + circular node */
+  .s3 .col-conn .conn{display:flex;align-items:center;justify-content:center;position:relative}
+  .s3 .col-conn .conn::before{content:'';position:absolute;left:0;right:0;top:50%;height:0;border-top:1.5px dashed var(--line);z-index:0}
+  .s3 .col-conn .conn .cnode{width:24px;height:24px;border-radius:50%;background:var(--white);border:1.5px solid var(--blue);color:var(--blue);font-family:var(--display);font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;z-index:1}
+  .s3 .col-conn .conn.moved .cnode{background:var(--blue);color:var(--white)}
+
+  /* callouts on the right */
+  .s3 .col-callouts .callout{padding:8px 16px;display:flex;flex-direction:column;justify-content:center;overflow:hidden}
+  .s3 .col-callouts .callout .h{font-family:var(--display);font-weight:700;font-size:14px;line-height:18px;color:var(--black);margin-bottom:3px}
+  .s3 .col-callouts .callout .b{font-family:var(--body);font-size:12.5px;line-height:18px;color:var(--ink)}
+  .s3 .col-callouts .callout.moved{background:rgba(11,100,221,0.04);border-left:2px solid var(--blue);padding-left:14px}
+
+  /* footer of each pane */
+  .paneftr{border-top:1px solid var(--line2);padding-top:24px;margin-top:36px;color:var(--lighter-ink);font-size:13px;line-height:21px}
+  .paneftr b{color:var(--ink);font-weight:600}
+
+  @media(max-width:820px){
+    .head h1{font-size:26px;line-height:32px}
+    .wrap{padding:0 18px}
+    .tab{padding:12px 12px;font-size:12px}
+    .s2 .flows{grid-template-columns:1fr;gap:36px}
+    .s3 .split{grid-template-columns:1fr;gap:20px}
+    .s3 .box .pin{left:auto;right:8px;top:8px;transform:none}
+  }
+  /* ==================== STEP 4 (light) ==================== */
+  .s4{--o-band:#F7F9FB;--o-line:#DDE3EA;--o-line2:#C9D2DC;--o-data:#0B64DD;--o-ctx:#00776E;--o-ai:#1C1E23;--o-muted:#69707D;--o-text:#1C1E23;--o-dim:#5A6270;--mono:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,monospace}
+  .s4 .pane-intro h2{color:var(--black)}
+
+  .s4 .orbit-band{background:var(--o-band);border:1px solid var(--o-line);border-radius:16px;margin-bottom:28px}
+  .s4 .scene{position:relative;height:560vh}
+  .s4 .stage{position:sticky;top:57px;height:calc(100vh - 57px);overflow:hidden}
+
+  /* head + rail float at the top-center during the build */
+  .s4 .stage-head{position:absolute;top:26px;left:0;right:0;text-align:center;z-index:5;transition:opacity .45s}
+  .s4 .stage-head .ey{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.96px;text-transform:uppercase;color:var(--o-muted);margin-bottom:10px}
+  .s4 .stage-head .ey .sq{width:10px;height:10px;background:var(--o-data)}
+  .s4 .stage-head .stage-title{font-family:var(--body);font-weight:400;font-size:28px;line-height:34px;letter-spacing:-.6px;color:var(--o-text)}
+  .s4 .rail{position:absolute;top:104px;left:0;right:0;display:flex;gap:22px;justify-content:center;z-index:5;transition:opacity .4s}
+  .s4 .rail button{all:unset;cursor:pointer;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.6px;text-transform:uppercase;color:var(--o-muted);transition:color .25s}
+  .s4 .rail .rd{width:8px;height:8px;background:var(--o-line2);transition:background .25s,transform .25s}
+  .s4 .rail button.on{color:var(--o-text)} .s4 .rail button.on .rd{transform:scale(1.6)}
+  .s4 .rail button[data-go="data"].on .rd{background:var(--o-data)}
+  .s4 .rail button[data-go="context"].on .rd{background:var(--o-ctx)}
+  .s4 .rail button[data-go="ai"].on .rd{background:var(--o-ai)}
+
+  /* THE single diagram: absolutely centered, JS drives translateX+scale to slide right */
+  .s4 .orbit{position:absolute;top:50%;left:50%;width:min(54vh,480px);height:min(54vh,480px);transform:translate(-50%,-50%);will-change:transform;z-index:3}
+  .s4 .orbit svg{width:100%;height:100%;overflow:visible;display:block}
+  .s4 .orbit-chip{position:absolute;left:50%;bottom:-42px;transform:translateX(-50%);font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--o-muted);border:1px solid var(--o-line2);border-radius:3px;background:var(--white);padding:7px 12px;white-space:nowrap;transition:color .3s,border-color .3s,opacity .4s}
+
+  .s4 .ring{fill:none;stroke:var(--o-line2);stroke-width:1;stroke-dasharray:2 6;transition:stroke .5s}
+  .s4 .ring.lit-data{stroke:var(--o-data)} .s4 .ring.lit-ctx{stroke:var(--o-ctx)} .s4 .ring.lit-ai{stroke:#7A828D}
+  .s4 #s4haze{fill:url(#s4hazeGrad);opacity:0;transition:opacity .6s} .s4 #s4haze.on{opacity:1}
+  .s4 .core-ring{fill:none;stroke:var(--o-data);stroke-width:2} .s4 .core-dot{fill:var(--o-data);opacity:.14}
+  .s4 .blabel{font-family:var(--mono);font-weight:700;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;transition:fill .4s,opacity .35s}
+  .s4 .blabel.c-data{fill:var(--o-data)} .s4 .blabel.c-ctx{fill:var(--o-ctx)} .s4 .blabel.c-ai{fill:var(--o-ai)} .s4 .blabel.dim{opacity:.32}
+  .s4 .elab{font-family:var(--mono);font-weight:700;font-size:10.5px;letter-spacing:.6px;text-transform:uppercase;fill:var(--o-muted);opacity:0;transition:opacity .4s}
+  .s4 .elab.on{opacity:1}
+  .s4 .node{transition:opacity .5s}
+  .s4 .node.nd-data{fill:var(--o-data)} .s4 .node.nd-ctx{fill:var(--o-ctx)} .s4 .node.nd-ai{fill:#9AA4B0}
+  .s4 .node.hidden{opacity:0}
+  .s4 .thread{fill:none;stroke-width:1.7;opacity:0;transition:opacity .45s} .s4 .thread.on{opacity:1}
+  .s4 .tdot{opacity:0;transition:opacity .45s} .s4 .tdot.on{opacity:1}
+
+  /* build cards flank the centred diagram */
+  .s4 .buildcards{position:absolute;inset:0;z-index:2;transition:opacity .4s}
+  .s4 .bc{position:absolute;top:50%;transform:translateY(-50%);width:250px;display:flex;flex-direction:column;gap:30px}
+  .s4 .bc.left{left:4%} .s4 .bc.right{right:4%}
+  .s4 .slot{position:relative;min-height:172px}
+  .s4 .card{position:absolute;top:0;left:0;right:0;background:var(--white);border:1px solid var(--o-line);border-radius:10px;padding:15px 16px;box-shadow:0 10px 28px rgba(28,30,35,.07);opacity:0;pointer-events:none;transition:opacity .5s,transform .5s}
+  .s4 .bc.left .card{transform:translateX(-24px)} .s4 .bc.right .card{transform:translateX(24px)}
+  .s4 .card.on{opacity:1;transform:translateX(0);pointer-events:auto}
+  .s4 .card .tp{font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.8px;text-transform:uppercase;margin-bottom:7px}
+  .s4 .card[data-layer="data"] .tp{color:var(--o-data)} .s4 .card[data-layer="context"] .tp{color:var(--o-ctx)} .s4 .card[data-layer="ai"] .tp{color:var(--o-ai)}
+  .s4 .card h4{font-family:var(--body);font-weight:600;font-size:15px;line-height:19px;color:var(--o-text);margin-bottom:5px;letter-spacing:-.2px}
+  .s4 .card p{font-family:var(--body);font-size:12.5px;line-height:18px;color:var(--o-dim)}
+  .s4 .card .soon{font-family:var(--mono);font-weight:700;font-size:8.5px;letter-spacing:.5px;text-transform:uppercase;color:var(--o-muted);border:1px solid var(--o-line2);border-radius:100px;padding:2px 6px;margin-left:6px;white-space:nowrap}
+
+  /* solutions panel on the LEFT, click tabs (revealed after the slide) */
+  .s4 .solpanel{position:absolute;top:50%;left:6.5%;width:min(40%,430px);transform:translateY(-50%) translateX(-24px);opacity:0;pointer-events:none;z-index:4;transition:opacity .5s,transform .5s}
+  .s4 .solpanel.on{opacity:1;transform:translateY(-50%) translateX(0);pointer-events:auto}
+  .s4 .solpanel .sp-ey{font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.9px;text-transform:uppercase;color:var(--o-muted);margin-bottom:14px}
+  .s4 .solpanel .sp-lead{font-family:var(--body);font-weight:400;font-size:27px;line-height:33px;letter-spacing:-.6px;color:var(--o-text);margin-bottom:12px}
+  .s4 .solpanel .sp-intro{font-family:var(--body);font-size:14px;line-height:21px;color:var(--o-dim);margin-bottom:26px;max-width:380px}
+  .s4 .sp-tabs{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--o-line)}
+  .s4 .sp-tab{all:unset;cursor:pointer;display:block;padding:15px 2px;border-bottom:1px solid var(--o-line);transition:padding .3s}
+  .s4 .sp-tab .t-ey{font-family:var(--mono);font-weight:700;font-size:9.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--o-muted);display:block;margin-bottom:4px}
+  .s4 .sp-tab .t-name{display:block;font-family:var(--body);font-weight:600;font-size:22px;line-height:26px;letter-spacing:-.3px;color:var(--o-dim);transition:color .3s}
+  .s4 .sp-tab .t-body{display:block;font-family:var(--body);font-size:13px;line-height:19px;color:var(--o-dim);max-width:370px;max-height:0;overflow:hidden;opacity:0;transition:max-height .4s,opacity .35s,margin .4s}
+  .s4 .sp-tab.active .t-body{max-height:120px;opacity:1;margin-top:9px}
+  .s4 .sp-tab.active.c-search .t-name{color:var(--o-data)}
+  .s4 .sp-tab.active.c-obs .t-name{color:var(--o-ctx)}
+  .s4 .sp-tab.active.c-sec .t-name{color:var(--o-ai)}
+  .s4 .sp-tab:focus-visible{outline:2px solid var(--o-data);outline-offset:3px}
+
+  @media(max-width:900px){
+    .s4 .scene{height:auto}
+    .s4 .stage{position:static;height:auto;padding:30px 0}
+    .s4 .stage-head{position:static;opacity:1!important;margin-bottom:18px}
+    .s4 .rail{position:static;opacity:1!important;margin-bottom:22px;flex-wrap:wrap}
+    .s4 .orbit{position:relative;top:auto;left:auto;transform:none!important;width:min(74vw,340px);height:min(74vw,340px);margin:0 auto 26px}
+    .s4 .orbit-chip{display:none}
+    .s4 .buildcards{position:static;opacity:1!important} .s4 .bc{position:static;transform:none;width:auto;margin:0 18px 10px} .s4 .slot{min-height:0}
+    .s4 .card{position:static;opacity:1!important;transform:none!important;margin-bottom:10px;pointer-events:auto}
+    .s4 .solpanel{position:static;transform:none!important;opacity:1!important;width:auto;margin:0 18px;pointer-events:auto}
+    .s4 .sp-tab .t-body{max-height:none;opacity:1;margin-top:9px}
+  }
+
+  /* ========== the two modules (One API + Bento), scoped under #s4mods ========== */
+  #s4mods{--black:#0b0b0b;--ink2:#141414;--orange:#0077cc;--card:#212121;--muted:#797979;--light-bg:#f4f3ef;--design-w:1920px;margin-top:12px}
+  #s4mods .modcap{max-width:1240px;margin:0 auto;padding:0 32px 14px;font-family:var(--mono);font-weight:700;font-size:11px;letter-spacing:.9px;text-transform:uppercase;color:#69707D}
+  #s4mods .modgap{height:64px}
+  #s4mods .mono{font-family:'IBM Plex Mono',monospace;text-transform:uppercase}
+  #s4mods .scaler{width:100%;overflow:hidden}
+  #s4mods .frame{width:var(--design-w);transform-origin:top left}
+  #s4mods .sec{background:var(--black);width:var(--design-w);display:flex;flex-direction:column;align-items:center}
+  #s4mods .head2{display:flex;gap:24.16px;align-items:flex-start;width:1248px}
+  #s4mods .head2 .col{flex:1 0 0;min-width:0}
+  #s4mods .h2{font-size:47.1px;line-height:51.84px;letter-spacing:-1.68px;color:#fff;font-weight:400}
+  #s4mods .h2sub{font-size:23.8px;line-height:29.76px;letter-spacing:-0.24px;color:#fff;font-weight:400}
+  #s4mods .oa{padding:96px 0;gap:96.01px;position:relative}
+  #s4mods .oa-row{display:flex;align-items:stretch;justify-content:center;width:100%;background-image:radial-gradient(rgba(255,255,255,0.12) 1px, transparent 1px);background-size:14px 14px}
+  #s4mods .oa-panelbox{flex:1 1 0;min-width:0;min-height:600px;position:relative;cursor:pointer;display:flex;flex-direction:column;background:var(--black);border-right:1px solid rgba(255,255,255,0.08);transition:background .45s ease;overflow:hidden}
+  #s4mods .oa-panelbox:last-child{border-right:none}
+  #s4mods .oa-mono{font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:16.9px;text-transform:uppercase}
+  #s4mods .oa-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;transition:opacity .35s ease}
+  #s4mods .oa-face .name{color:#797979;letter-spacing:0.04em}
+  #s4mods .oa-face .cta{position:absolute;bottom:28px;left:0;right:0;text-align:center;color:#797979}
+  #s4mods .oa-panelbox.active .oa-face{opacity:0;pointer-events:none}
+  #s4mods .oa-panelbox.active{cursor:default}
+  #s4mods .oa-panelbox.pos-left.active{background:#00bfb3}
+  #s4mods .oa-panelbox.pos-mid.active{background:var(--orange)}
+  #s4mods .oa-panelbox.pos-right.active{background:#1a3d6b}
+  #s4mods .oa-chat{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:8px;opacity:0;pointer-events:none;transition:opacity .4s ease .1s}
+  #s4mods .oa-panelbox.active .oa-chat{opacity:1;pointer-events:auto}
+  #s4mods .oa-chdr,#s4mods .oa-cftr{display:flex;align-items:center;justify-content:space-between;padding:8px;gap:6px}
+  #s4mods .oa-cftr{align-items:flex-end}
+  #s4mods .oa-chdr .oa-mono,#s4mods .oa-cftr .oa-mono{color:var(--ink2)}
+  #s4mods .oa-tag{background:var(--black);color:#fff;padding:2px 4px}
+  #s4mods .oa-cbody{flex:1;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+  #s4mods .oa-codepanel{width:100%;max-width:360px;position:relative}
+  #s4mods .brk{position:absolute;width:13px;height:13px;border-style:solid}
+  #s4mods .oa-panelbox.pos-left.active .brk{border-color:var(--ink2)}
+  #s4mods .oa-panelbox.pos-mid.active .brk{border-color:var(--ink2)}
+  #s4mods .oa-panelbox.pos-right.active .brk{border-color:#fff}
+  #s4mods .oa-code{background:var(--black);padding:16px;font-family:'IBM Plex Mono',monospace;font-size:12px;line-height:19px;white-space:pre;overflow:auto;min-height:290px;color:#e1e4e8;text-transform:none}
+  #s4mods .oa-code .r{color:#f97583}#s4mods .oa-code .b{color:#79b8ff}#s4mods .oa-code .lb{color:#9ecbff}
+  #s4mods .oa-code .p{color:#b392f0}#s4mods .oa-code .o{color:#ffab70}#s4mods .oa-code .g{color:#6a737d}#s4mods .oa-code .w{color:#e1e4e8}
+  #s4mods .oa::after{content:"";position:absolute;inset:0;z-index:50;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22760%22%20height%3D%22760%22%3E%3Cfilter%20id%3D%22r%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.03%22%20numOctaves%3D%225%22%20seed%3D%2215%22%20stitchTiles%3D%22stitch%22%20result%3D%22big%22/%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.34%22%20numOctaves%3D%222%22%20seed%3D%224%22%20stitchTiles%3D%22stitch%22%20result%3D%22tooth%22/%3E%3CfeComposite%20in%3D%22tooth%22%20in2%3D%22big%22%20operator%3D%22arithmetic%22%20k1%3D%220%22%20k2%3D%220.32%22%20k3%3D%220.82%22%20k4%3D%220%22%20result%3D%22ht%22/%3E%3CfeDiffuseLighting%20in%3D%22ht%22%20lighting-color%3D%22%23ffffff%22%20surfaceScale%3D%221.6%22%20diffuseConstant%3D%220.95%22%20result%3D%22lit%22%3E%3CfeDistantLight%20azimuth%3D%22235%22%20elevation%3D%2255%22/%3E%3C/feDiffuseLighting%3E%3CfeColorMatrix%20in%3D%22lit%22%20type%3D%22saturate%22%20values%3D%220%22%20result%3D%22g%22/%3E%3CfeComponentTransfer%20in%3D%22g%22%3E%3CfeFuncR%20type%3D%22linear%22%20slope%3D%220.30%22%20intercept%3D%220.02%22/%3E%3CfeFuncG%20type%3D%22linear%22%20slope%3D%220.30%22%20intercept%3D%220.02%22/%3E%3CfeFuncB%20type%3D%22linear%22%20slope%3D%220.30%22%20intercept%3D%220.02%22/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url%28%23r%29%22/%3E%3C/svg%3E");background-size:760px 760px;mix-blend-mode:screen;opacity:0.55}
+  @media(max-width:860px){#s4mods .oa-row{flex-direction:column}#s4mods .oa-panelbox{border-right:none;border-bottom:1px solid rgba(255,255,255,0.08);min-height:420px}}
+  #s4mods .bento-track{background:var(--light-bg);position:relative}
+  #s4mods .bento-lead{font-family:'Inter',sans-serif;font-weight:400;color:var(--ink2);font-size:clamp(44px,6vw,104px);line-height:1.0;letter-spacing:-0.03em;margin:0;padding:clamp(56px,9vh,140px) clamp(24px,5vw,96px) clamp(32px,5vh,72px);max-width:16ch}
+  #s4mods .bento-lead .org{color:var(--orange)}
+  #s4mods .bento-pin{position:sticky;top:0;height:100vh;overflow:hidden;padding:0 clamp(24px,5vw,96px);box-sizing:border-box}
+  #s4mods .bento-cols{height:100%;display:grid;grid-template-columns:minmax(220px,300px) minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,80px);align-items:stretch;padding:clamp(56px,9vh,120px) 0 clamp(24px,4vh,56px)}
+  #s4mods .bento-menu{display:flex;flex-direction:column;gap:12px;align-self:start;padding-top:clamp(8px,2vh,24px)}
+  #s4mods .bento-menu button{all:unset;cursor:pointer;display:flex;gap:16px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:14px;text-transform:uppercase;letter-spacing:0.02em;color:var(--ink2);opacity:0.55;transition:opacity .3s}
+  #s4mods .bento-menu button .idx{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:22px;padding:0 5px;box-sizing:border-box}
+  #s4mods .bento-menu button.active{opacity:1}
+  #s4mods .bento-menu button.active .idx{background:var(--black);color:#fff}
+  #s4mods .bento-mid{position:relative;align-self:stretch;height:100%;overflow:hidden}
+  #s4mods .bento-mid-track{position:absolute;left:0;right:0;top:0;display:flex;flex-direction:column;will-change:transform}
+  #s4mods .bento-state{display:flex;flex-direction:column;gap:22px;align-items:flex-start;justify-content:center;height:100vh;box-sizing:border-box;opacity:0.2;transition:opacity .4s ease}
+  #s4mods .bento-state.active{opacity:1}
+  #s4mods .bento-state .h3{font-family:'Inter',sans-serif;font-weight:400;font-size:clamp(28px,2.3vw,42px);line-height:1.08;letter-spacing:-0.02em;color:var(--ink2);margin:0}
+  #s4mods .bento-state .body{font-size:clamp(16px,1.15vw,19px);line-height:1.5;letter-spacing:-0.01em;color:var(--ink2);max-width:34ch}
+  #s4mods .bento-state ul{list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:5px;margin:0}
+  #s4mods .bento-state li{font-size:clamp(14px,1vw,16px);line-height:1.45;color:var(--ink2);margin-left:6px}
+  #s4mods .pill{border:1px solid var(--black);border-radius:99999px;min-height:38px;display:inline-flex;align-items:center;padding:8px 15px;font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.02em;text-transform:uppercase;color:var(--ink2);text-decoration:none}
+  #s4mods .bento-vis{position:relative;align-self:stretch;min-height:60vh;height:100%}
+  #s4mods .bento-visual{position:absolute;inset:0;opacity:0;transform:translateY(24px);pointer-events:none;transition:opacity .5s ease,transform .5s ease;overflow:hidden}
+  #s4mods .bento-visual.active{opacity:1;transform:translateY(0);pointer-events:auto}
+  #s4mods .cascade{position:absolute;inset:0;background:linear-gradient(180deg,#0077cc 0%,#3f93d6 8%,#d8d5cf 42%,#e9e7e2 100%)}
+  #s4mods .cascade .win{position:absolute;right:0;background:#fff;border-radius:12px 0 0 12px;box-shadow:0 20px 50px rgba(0,0,0,0.18);display:flex;align-items:center;gap:12px;padding:16px 22px;font-size:17px;color:var(--ink2);white-space:nowrap}
+  #s4mods .cascade .win .ic{width:30px;height:30px;border-radius:7px;background:var(--black);flex-shrink:0;color:#fff;display:flex;align-items:center;justify-content:center}
+  #s4mods .studio{position:absolute;right:0;bottom:0;width:min(96%,760px);background:#fff;border-radius:14px 0 0 0;box-shadow:0 -10px 50px rgba(0,0,0,0.18);overflow:hidden;font-size:15px}
+  #s4mods .studio-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #eee}
+  #s4mods .studio-top .l{display:flex;align-items:center;gap:10px;font-weight:500}
+  #s4mods .studio-top .seg{display:flex;gap:6px}
+  #s4mods .studio-top .seg span{font-size:13px;color:#666;padding:5px 12px;border-radius:7px}
+  #s4mods .studio-top .seg span.on{background:#f0efec;color:#111}
+  #s4mods .studio-cols{display:grid;grid-template-columns:1fr 1fr 1fr}
+  #s4mods .studio-col{border-right:1px solid #f0efec;padding:8px 0}
+  #s4mods .studio-col:last-child{border-right:none}
+  #s4mods .studio-col .ch{font-size:12px;color:#8a8880;text-transform:uppercase;letter-spacing:0.04em;padding:8px 18px}
+  #s4mods .studio-row{display:flex;align-items:center;gap:9px;padding:11px 18px;color:#222}
+  #s4mods .studio-row.sel{background:#f0efec}
+  #s4mods .studio-row .doc{width:15px;height:17px;border:1.5px solid #b8b6b0;border-radius:2px;flex-shrink:0}
+  #s4mods .studio-brand{font-size:26px;font-weight:400;padding:14px 18px}
+  #s4mods .vis-ph{position:absolute;inset:0;background:linear-gradient(180deg,#0077cc 0%,#d3dce4 45%,#eae8e3 100%);display:flex;align-items:center;justify-content:center;padding:40px}
+  #s4mods .vis-ph .ph-card{background:#fff;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,0.15);width:80%;height:60%;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:13px;text-transform:uppercase;color:#9a9890}
+  @media(max-width:860px){#s4mods .bento-cols{grid-template-columns:1fr;gap:28px}#s4mods .bento-menu{flex-direction:row;flex-wrap:wrap;gap:8px 20px}#s4mods .bento-vis{min-height:52vh}#s4mods .bento-pin{height:auto;min-height:100vh;padding-bottom:40px}}
+
+  /* ==================== STEP 4 · homepage wireframe + separate SEO annotation rail ==================== */
+  .sw{
+    --w-line:#C9D2DC;--w-line2:#DDE3EA;--w-fill:#EEF1F5;--w-fill2:#E4E9EF;
+    --w-ink:#1C1E23;--w-mut:#69707D;--w-blue:#0B64DD;--w-teal:#00776E;
+    --w-warm:#F7F8FA;--mono:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,monospace
+  }
+  .sw>.wrap{max-width:1240px}
+  .sw .pane-intro{max-width:790px;margin-bottom:22px}
+  .sw .pane-intro h2{color:var(--black)}
+  .sw .wf-key{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:0 0 22px;padding:12px 14px;border:1px solid var(--w-line2);border-radius:9px;background:var(--w-warm);font-family:var(--mono);font-size:10px;line-height:16px;letter-spacing:.45px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .wf-key span{display:inline-flex;align-items:center;gap:7px}
+  .sw .wf-key i{width:10px;height:10px;border:1px solid var(--w-line);background:#fff;display:inline-block}
+  .sw .wf-key .k-seo i{border-color:var(--w-blue);background:rgba(11,100,221,.08)}
+  .sw .wf-key .k-hover{margin-left:auto;text-transform:none;letter-spacing:0;font-family:var(--body);font-size:12px}
+
+  .sw .wf-board{display:grid;grid-template-columns:minmax(620px,1fr) 64px minmax(320px,372px);align-items:start;margin:0 auto}
+  .sw .wf-browser{border:1px solid var(--w-line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 3px 16px rgba(28,30,35,.05)}
+  .sw .wf-chrome{height:38px;background:var(--w-warm);border-bottom:1px solid var(--w-line);display:flex;align-items:center;gap:10px;padding:0 12px}
+  .sw .wf-dots{display:flex;gap:5px}.sw .wf-dots i{width:9px;height:9px;border-radius:50%;background:var(--w-line);display:block}
+  .sw .wf-address{height:22px;flex:1;border:1px solid var(--w-line2);background:#fff;border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;color:var(--w-mut)}
+  .sw .wf-page{background:#fff}
+
+  .sw .wire-section{position:relative;padding:20px 24px;border-bottom:1px dashed var(--w-line);overflow:hidden;transition:background .18s,box-shadow .18s}
+  .sw .wire-section:last-child{border-bottom:0}
+  .sw .wire-section.focus{background:rgba(11,100,221,.035);box-shadow:inset 3px 0 0 var(--w-blue)}
+  .sw .wire-label{position:absolute;top:9px;left:11px;font-family:var(--mono);font-weight:700;font-size:8.5px;line-height:13px;letter-spacing:.7px;text-transform:uppercase;color:var(--w-mut);z-index:2}
+  .sw .wire-inner{height:100%;display:flex;flex-direction:column;justify-content:center}
+  .sw .wire-center{text-align:center;align-items:center}
+  .sw .wire-row{display:flex;gap:11px;align-items:center}.sw .wire-grid{display:grid;gap:12px}
+  .sw .wire-2{grid-template-columns:1fr 1fr}.sw .wire-3{grid-template-columns:repeat(3,1fr)}
+  .sw .wire-line{height:7px;border-radius:3px;background:var(--w-fill2)}
+  .sw .wire-line.dark{background:#424852}.sw .wire-line.blue{background:rgba(11,100,221,.46)}
+  .sw .wire-title{height:18px;border-radius:4px;background:var(--w-fill)}
+  .sw .wire-title.lg{height:25px}.sw .wire-title.sm{height:13px}
+  .sw .wire-button{height:31px;min-width:92px;padding:0 13px;border:1px solid var(--w-line);border-radius:6px;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8.5px;letter-spacing:.45px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .wire-button.primary{border-color:var(--w-blue);background:var(--w-blue);color:#fff}
+  .sw .wire-card{border:1px solid var(--w-line2);border-radius:8px;background:#fff;padding:13px;min-width:0}
+  .sw .wire-icon{width:25px;height:25px;border-radius:5px;background:var(--w-fill2);margin-bottom:14px}
+  .sw .wire-tag{font-family:var(--mono);font-size:8px;line-height:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .wire-media{border:1px solid var(--w-line2);border-radius:9px;background:repeating-linear-gradient(45deg,var(--w-fill),var(--w-fill) 10px,var(--w-fill2) 10px,var(--w-fill2) 20px);position:relative;overflow:hidden}
+  .sw .wire-media:after{content:'Product UI';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;letter-spacing:.7px;text-transform:uppercase;color:var(--w-mut)}
+
+  /* shared desktop row heights keep the diagram aligned */
+  .sw .wf-h-ann{height:56px}.sw .wf-h-hero{height:270px}.sw .wf-h-trust{height:128px}
+  .sw .wf-h-solutions{height:300px}.sw .wf-h-data{height:230px}.sw .wf-h-context{height:230px}.sw .wf-h-agentic{height:230px}
+  .sw .wf-h-proof{height:420px}.sw .wf-h-integrations{height:190px}.sw .wf-h-start{height:334px}.sw .wf-h-faq{height:326px}.sw .wf-h-close{height:186px}
+
+  /* nav */
+  .sw .site-nav{display:grid;grid-template-columns:118px 1fr auto;align-items:center;gap:18px;height:100%}
+  .sw .brand-ph{height:25px;width:94px;border-radius:4px;background:var(--w-ink)}
+  .sw .nav-ph{display:flex;gap:18px;justify-content:center}.sw .nav-ph i{height:7px;width:54px;border-radius:3px;background:var(--w-fill2)}
+  .sw .nav-actions{display:flex;gap:8px}.sw .nav-actions i{height:28px;width:66px;border:1px solid var(--w-line);border-radius:5px}.sw .nav-actions i:last-child{background:var(--w-blue);border-color:var(--w-blue)}
+  /* announcement */
+  .sw .announce-ph{height:100%;margin:-20px -24px;display:flex;align-items:center;justify-content:center;gap:12px;background:var(--w-ink)}
+  /* hero */
+  .sw .hero-ph{height:100%;display:flex;align-items:center;justify-content:center;text-align:center;padding:18px 7% 4px}
+  .sw .hero-copy{max-width:720px;display:flex;flex-direction:column;align-items:center}
+  .sw .hero-copy .wire-tag{margin-bottom:12px}
+  .sw .wire-h1{font-family:var(--display);font-weight:800;font-size:36px;line-height:42px;letter-spacing:-.8px;color:var(--w-ink);margin:0}
+  .sw .wire-h2{font-family:var(--display);font-weight:800;font-size:24px;line-height:29px;letter-spacing:-.35px;color:var(--w-ink);margin:0}
+  .sw .wire-copy{font-family:var(--body);font-size:14px;line-height:21px;color:var(--w-mut);margin:12px 0 0;max-width:660px}
+  .sw .hero-actions{display:flex;gap:10px;margin-top:22px;justify-content:center}
+  /* trust */
+  .sw .trust-ph{display:grid;grid-template-columns:160px 1fr;gap:24px;align-items:center;height:100%;padding-top:6px}.sw .trust-stat{border-right:1px solid var(--w-line2);padding-right:20px}.sw .trust-stat .wire-title{width:82%;height:28px}.sw .logo-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.sw .logo-strip i{height:38px;border:1px dashed var(--w-line);border-radius:5px;background:var(--w-warm)}
+  /* solutions */
+  .sw .section-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:24px;align-items:end;margin:4px 0 18px}.sw .section-head .wire-line{margin-top:7px}
+  .sw .solution-card{height:177px;display:flex;flex-direction:column}.sw .solution-card .wire-title{width:72%;margin-bottom:10px}.sw .solution-card .wire-line{margin-top:7px}.sw .solution-card .wire-tag{margin-top:auto;padding-top:12px}
+  /* platform layers */
+  .sw .platform-section-ph{height:100%;display:grid;grid-template-columns:minmax(0,.9fr) minmax(280px,1.1fr);gap:28px;align-items:center;padding:12px 0 2px}
+  .sw .platform-text{max-width:430px}
+  .sw .platform-text .wire-tag{margin-bottom:9px}
+  .sw .platform-text .wire-copy{margin-top:9px}
+  .sw .layer-visual{height:142px;border:1px solid var(--w-line2);border-radius:9px;background:var(--w-warm);display:flex;align-items:center;justify-content:center;padding:18px;position:relative;overflow:hidden}
+  .sw .data-flow{display:grid;grid-template-columns:1fr 42px 1fr;gap:12px;align-items:center;width:100%}
+  .sw .source-stack{display:flex;flex-direction:column;gap:7px}.sw .source-chip,.sw .engine-chip{height:27px;border:1px solid var(--w-line);border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;letter-spacing:.45px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .engine-chip{height:80px;border-color:rgba(11,100,221,.45);color:var(--w-blue);font-weight:700}.sw .flow-arrow{height:1px;border-top:1px dashed var(--w-line);position:relative}.sw .flow-arrow:after{content:'›';position:absolute;right:-2px;top:-11px;color:var(--w-mut);font-size:17px}
+  .sw .context-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;width:100%}.sw .context-step{height:76px;border:1px solid var(--w-line);border-radius:6px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:var(--mono);font-size:8px;line-height:12px;letter-spacing:.35px;text-transform:uppercase;color:var(--w-mut)}.sw .context-step i{width:22px;height:22px;border-radius:4px;background:var(--w-fill2);display:block;margin-bottom:8px}
+  .sw .agent-flow{width:100%;display:grid;grid-template-columns:1fr 58px 1fr;gap:12px;align-items:center}.sw .agent-node{height:86px;border:1px solid rgba(0,119,110,.42);border-radius:7px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;letter-spacing:.45px;text-transform:uppercase;color:var(--w-teal)}.sw .agent-node i{width:28px;height:28px;border-radius:50%;background:rgba(0,119,110,.1);border:1px solid rgba(0,119,110,.32);margin-bottom:8px}.sw .action-stack{display:flex;flex-direction:column;gap:7px}.sw .action-stack span{height:27px;border:1px solid var(--w-line);border-radius:5px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;letter-spacing:.35px;text-transform:uppercase;color:var(--w-mut)}
+  /* proof */
+  .sw .proof-ph{height:100%;padding-top:8px}.sw .metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 14px}.sw .metric{padding:12px;border:1px solid var(--w-line2);border-radius:7px}.sw .metric .wire-title{height:26px;width:55%;margin-bottom:9px}
+  .sw .proof-grid{display:grid;grid-template-columns:1.35fr .9fr;gap:12px}.sw .story-card{height:188px;display:grid;grid-template-columns:88px 1fr;gap:14px}.sw .story-logo{border-radius:6px;background:var(--w-fill2);height:54px}.sw .story-copy .wire-line{margin-top:8px}.sw .story-copy .wire-button{margin-top:17px}
+  .sw .analyst-stack{display:flex;flex-direction:column;gap:10px}.sw .analyst-card{height:89px;display:grid;grid-template-columns:44px 1fr;gap:11px;align-items:center}.sw .badge-ph{width:40px;height:40px;border-radius:50%;background:var(--w-fill2)}
+  /* integration */
+  .sw .integration-ph{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px 5% 0}.sw .integration-ph .wire-copy{margin-top:7px;max-width:560px}.sw .integration-logos{width:100%;display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:18px}.sw .integration-logos i{height:40px;border:1px dashed var(--w-line);border-radius:5px;background:var(--w-warm)}
+  /* get started */
+  .sw .start-ph{height:100%;padding-top:24px;justify-content:flex-start}.sw .start-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:16px}.sw .start-card{height:184px;display:flex;flex-direction:column}.sw .start-card .wire-line{margin-top:7px}.sw .code-ph{margin-top:auto;background:var(--w-ink);border-radius:6px;padding:10px}.sw .code-ph i{height:5px;border-radius:3px;background:#46505D;display:block;margin-top:6px}.sw .code-ph i:first-child{margin-top:0;background:#4384DA}
+  /* faq */
+  .sw .faq-ph{height:100%;padding-top:24px;justify-content:flex-start}.sw .faq-list{margin-top:18px;border-top:1px solid var(--w-line2)}.sw .faq-row{height:37px;border-bottom:1px solid var(--w-line2);display:flex;align-items:center;justify-content:space-between}.sw .faq-row i:first-child{height:7px;width:55%;background:var(--w-fill2);border-radius:3px}.sw .faq-row i:last-child{font-style:normal;font-family:var(--mono);color:var(--w-mut)}
+  /* close */
+  .sw .close-ph{height:100%;margin:-20px -24px;background:var(--w-ink);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.sw .close-ph .wire-title{background:#424852}.sw .close-ph .wire-line{background:#343A43}.sw .close-actions{display:flex;gap:10px;margin-top:17px}.sw .close-actions .wire-button:not(.primary){background:transparent;border-color:#58606B;color:#C9CED6}
+
+  /* actual text inside the lo-fi wireframe */
+  .sw .wire-kicker{font-family:var(--mono);font-weight:700;font-size:8px;line-height:13px;letter-spacing:.55px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .wire-section-title{font-family:var(--display);font-weight:800;font-size:23px;line-height:29px;letter-spacing:-.3px;color:var(--w-ink);margin:6px 0 0}
+  .sw .wire-card-title{font-family:var(--display);font-weight:700;font-size:16px;line-height:21px;color:var(--w-ink);margin:0}
+  .sw .wire-body{font-family:var(--body);font-size:12.5px;line-height:18px;color:var(--w-mut);margin:7px 0 0}
+  .sw .wire-small{font-family:var(--body);font-size:10.5px;line-height:15px;color:var(--w-mut);margin:5px 0 0}
+  .sw .wire-link{font-family:var(--mono);font-weight:700;font-size:8px;line-height:13px;letter-spacing:.4px;text-transform:uppercase;color:var(--w-blue);margin-top:auto;padding-top:11px}
+  .sw .brand-text{font-family:var(--display);font-weight:800;font-size:18px;line-height:24px;color:var(--w-ink)}
+  .sw .nav-links{display:flex;gap:17px;justify-content:center;align-items:center}.sw .nav-links a{font-family:var(--body);font-size:10px;line-height:15px;color:var(--w-mut);text-decoration:none}
+  .sw .nav-text-actions{display:flex;gap:8px}.sw .nav-text-actions span{height:28px;padding:0 10px;border:1px solid var(--w-line);border-radius:5px;display:flex;align-items:center;font-family:var(--mono);font-size:7.5px;letter-spacing:.35px;text-transform:uppercase;color:var(--w-mut)}.sw .nav-text-actions span:last-child{background:var(--w-blue);border-color:var(--w-blue);color:#fff}
+  .sw .announcement-copy{font-family:var(--body);font-size:10.5px;line-height:16px;color:#D9DEE5}.sw .announcement-link{font-family:var(--mono);font-weight:700;font-size:8px;line-height:13px;letter-spacing:.4px;text-transform:uppercase;color:#8CC8FF}
+  .sw .trust-number{font-family:var(--display);font-weight:800;font-size:25px;line-height:29px;color:var(--w-ink)}
+  .sw .metric-number{font-family:var(--display);font-weight:800;font-size:25px;line-height:29px;color:var(--w-ink)}
+  .sw .story-quote{font-family:var(--body);font-size:12px;line-height:18px;color:var(--w-ink);margin:0 0 8px}.sw .story-meta{font-family:var(--mono);font-size:8px;line-height:13px;letter-spacing:.35px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .analyst-name{font-family:var(--display);font-weight:700;font-size:12px;line-height:16px;color:var(--w-ink)}
+  .sw .faq-question{font-family:var(--body);font-weight:600;font-size:11.5px;line-height:17px;color:var(--w-ink)}
+  .sw .close-title{font-family:var(--display);font-weight:800;font-size:25px;line-height:31px;letter-spacing:-.35px;color:#fff;margin:0}.sw .close-copy{font-family:var(--body);font-size:12.5px;line-height:18px;color:#B7C0CC;margin:8px 0 0;max-width:520px}
+  .sw .section-copy-head{max-width:640px}
+  .sw .solution-card .wire-card-title{margin-top:0}.sw .solution-card .wire-body{margin-top:7px}
+  .sw .start-card .wire-card-title{margin-top:0}.sw .start-card .wire-body{margin-top:7px}
+  .sw .proof-ph>.wire-body{max-width:650px}
+
+  /* Step 4 structure switcher */
+  .sw .wf-option-tabs{display:flex;gap:8px;align-items:center;margin:0 0 22px;padding:5px;border:1px solid var(--w-line);border-radius:9px;background:var(--w-fill);width:max-content;max-width:100%}
+  .sw .wf-option-tab{appearance:none;border:0;border-radius:6px;background:transparent;padding:9px 14px;font-family:var(--display);font-weight:700;font-size:12px;line-height:17px;color:var(--w-mut);cursor:pointer;transition:background .18s,color .18s,box-shadow .18s}
+  .sw .wf-option-tab:hover{color:var(--w-ink)}
+  .sw .wf-option-tab.on{background:#fff;color:var(--w-ink);box-shadow:0 1px 4px rgba(28,30,35,.09)}
+  .sw .wf-option-tab:focus-visible{outline:2px solid var(--w-blue);outline-offset:2px}
+  .sw .wf-option-pane{display:block}
+  .sw .wf-option-pane.on{display:block}
+  .sw .wf-option-label{display:flex;align-items:baseline;gap:10px;margin:0 0 12px}
+  .sw .wf-option-label h3{font-family:var(--display);font-weight:800;font-size:18px;line-height:24px;color:var(--w-ink)}
+  .sw .wf-option-label p{font-size:12px;line-height:18px;color:var(--w-mut)}
+  @media(max-width:650px){.sw .wf-option-tabs{width:100%;display:grid;grid-template-columns:1fr 1fr}.sw .wf-option-tab{padding-left:8px;padding-right:8px}.sw .wf-option-label{display:block}.sw .wf-option-label p{margin-top:2px}}
+
+  /* connector column */
+  .sw .wf-connectors{display:flex;flex-direction:column}.sw .conn-head{height:38px}
+  .sw .wf-connector{position:relative;display:flex;align-items:center;justify-content:center;transition:background .18s}
+  .sw .wf-connector:before{content:'';position:absolute;left:0;right:0;border-top:1px dashed var(--w-line)}
+  .sw .wf-node{width:27px;height:27px;border-radius:50%;background:#fff;border:1.5px solid var(--w-blue);display:flex;align-items:center;justify-content:center;z-index:1;font-family:var(--mono);font-weight:700;font-size:9px;color:var(--w-blue);transition:background .18s,color .18s,transform .18s}
+  .sw .wf-connector.focus .wf-node{background:var(--w-blue);color:#fff;transform:scale(1.06)}
+
+  /* SEO rail */
+  .sw .wf-seo{display:flex;flex-direction:column}.sw .seo-head{height:38px;display:flex;align-items:center;padding:0 14px;border:1px solid var(--w-line);border-bottom:0;border-radius:10px 10px 0 0;background:var(--w-ink);color:#fff;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.65px;text-transform:uppercase}
+  .sw .seo-note{position:relative;padding:10px 0 10px 14px;display:flex;align-items:center;border-left:1px solid var(--w-line);border-right:1px solid var(--w-line);border-bottom:1px dashed var(--w-line);transition:background .18s}
+  .sw .seo-note:last-child{border-bottom:1px solid var(--w-line);border-radius:0 0 10px 10px}
+  .sw .seo-note.focus{background:rgba(11,100,221,.035)}
+  .sw .seo-card{width:100%;padding:8px 13px}
+  .sw .seo-top{display:block;margin-bottom:5px}.sw .seo-top h3{font-family:var(--display);font-size:13px;line-height:17px;color:var(--black)}
+  .sw .seo-card p{font-size:11.5px;line-height:17px;color:var(--w-ink)}.sw .seo-card p+p{margin-top:4px}.sw .seo-card b{font-weight:600;color:var(--black)}
+  .sw .seo-note.compact{padding-top:4px;padding-bottom:4px}.sw .seo-note.compact .seo-card{padding:2px 10px}.sw .seo-note.compact .seo-top{margin-bottom:1px}.sw .seo-note.compact .seo-top h3{font-size:11.5px;line-height:14px}.sw .seo-note.compact .seo-card p{font-size:9.8px;line-height:13px}
+  .tabs{overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tabs>.wrap{min-width:max-content}
+
+  @media(max-width:1120px){
+    .sw>.wrap{max-width:100%}.sw .wf-board{grid-template-columns:minmax(560px,1fr) 52px 310px}
+    .sw .wire-section{padding-left:19px;padding-right:19px}.sw .seo-card p{font-size:11px;line-height:16px}
+  }
+  @media(max-width:940px){
+    .sw .wf-board{display:block}.sw .wf-connectors{display:none}.sw .wf-browser{max-width:760px;margin:0 auto}.sw .wf-seo{max-width:760px;margin:24px auto 0}
+    .sw .seo-head{height:42px}.sw .seo-note{height:auto!important;min-height:94px}.sw .wf-key .k-hover{display:none}
+  }
+  @media(max-width:650px){
+    .sw .wf-h-ann{height:60px}.sw .wf-h-hero{height:340px}.sw .wf-h-trust{height:220px}.sw .wf-h-solutions{height:670px}
+    .sw .wf-h-data{height:390px}.sw .wf-h-context{height:390px}.sw .wf-h-agentic{height:390px}.sw .wf-h-proof{height:720px}.sw .wf-h-integrations{height:280px}.sw .wf-h-start{height:680px}.sw .wf-h-faq{height:370px}.sw .wf-h-close{height:210px}
+    .sw .section-head{grid-template-columns:1fr}.sw .platform-section-ph{grid-template-columns:1fr;gap:18px}.sw .layer-visual{height:160px}.sw .wire-h1{font-size:29px;line-height:35px}.sw .wire-h2{font-size:22px;line-height:27px}.sw .wire-copy{font-size:13px;line-height:20px}.sw .hero-ph{padding-left:4%;padding-right:4%}
+    .sw .trust-ph{grid-template-columns:1fr}.sw .trust-stat{border-right:0;border-bottom:1px solid var(--w-line2);padding:0 0 13px}.sw .logo-strip{grid-template-columns:repeat(3,1fr)}
+    .sw .wire-3,.sw .start-grid,.sw .metric-row,.sw .proof-grid{grid-template-columns:1fr}.sw .solution-card{height:170px}.sw .start-card{height:170px}.sw .proof-grid{gap:10px}.sw .integration-logos{grid-template-columns:repeat(3,1fr)}
+    .tabs>.wrap{padding-left:18px!important;padding-right:18px!important}
+    .sw .site-nav{grid-template-columns:90px 1fr}.sw .nav-links{display:none}.sw .nav-text-actions{justify-self:end}.sw .wire-section{padding:21px 18px}.sw .announce-ph,.sw .close-ph{margin:-21px -18px}
+  }
+
+
+  /* Step 4 lo-fi cleanup */
+  .sw .wire-label,.sw .wire-kicker{display:none!important}
+  .sw .wf-h-ann{height:88px}
+  .sw .announce-ph{margin:-20px -24px;padding:18px 28px;min-height:88px;height:auto;gap:18px;flex-wrap:wrap;text-align:center}
+  .sw .announcement-copy{font-size:12px;line-height:18px;max-width:520px}
+  .sw .announcement-link{font-size:9px;line-height:14px;white-space:nowrap}
+  .sw .simple-diagram{height:142px;border:1px solid var(--w-line2);border-radius:9px;background:var(--w-warm);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:700;font-size:10px;letter-spacing:.75px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .integration-diagram{width:min(100%,560px);height:70px;margin-top:17px}
+  .sw .small-diagram{height:62px;margin-top:16px}
+  .sw .logo-strip i,.sw .story-logo,.sw .badge-ph{display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;letter-spacing:.45px;text-transform:uppercase;color:var(--w-mut);font-style:normal}
+  .sw .wire-section.focus{box-shadow:none}
+  .sw .seo-note{padding-left:0;border-left:0;border-right:0}
+  .sw .seo-note:last-child{border-left:0;border-right:0}
+  .sw .seo-card{padding-left:14px;padding-right:14px}
+  .sw .section-head{margin-top:0}
+  .sw .solution-card{justify-content:flex-start}
+  .sw .proof-ph{padding-top:0}
+  .sw .faq-ph{padding-top:0}
+  @media(max-width:650px){
+    .sw .wf-h-ann{height:112px}
+    .sw .announce-ph{margin:-21px -18px;min-height:112px;padding:20px 24px;flex-direction:column;gap:7px}
+    .sw .announcement-copy{font-size:12px;line-height:18px}
+  }
+
+
+  /* Step 4 comparison: both complete wireframes remain visible */
+  .sw .wf-option-pane{display:block!important}
+  .sw .wf-option-pane + .wf-option-pane{margin-top:72px;padding-top:48px;border-top:1px solid var(--w-line)}
+  .sw .wf-option-label{margin-bottom:18px}
+  .sw .wf-option-label h3{font-size:22px;line-height:28px}
+  .sw .wf-option-label p{font-size:13px;line-height:20px}
+
+
+  /* Step 4 final comparison: two separate complete wireframes */
+  .sw .wireframe-option-block{display:block!important;position:relative;margin:0;padding:0}
+  .sw .wireframe-option-block + .wireframe-option-block{margin-top:104px;padding-top:72px;border-top:2px solid var(--w-ink)}
+  .sw .wireframe-option-block + .wireframe-option-block:before{content:"";position:absolute;top:-2px;left:0;width:120px;height:2px;background:var(--w-blue)}
+  .sw .wf-option-label{display:flex;align-items:baseline;gap:12px;margin:0 0 6px;padding:0}
+  .sw .wf-option-label h3{font-family:var(--display);font-weight:800;font-size:26px;line-height:32px;color:var(--black);margin:0}
+  .sw .wf-option-label p{font-family:var(--body);font-size:14px;line-height:21px;color:var(--w-mut);margin:0}
+  .sw .wf-option-sequence{margin:0 0 22px;padding:10px 13px;border:1px solid var(--w-line2);border-radius:7px;background:var(--w-warm);font-family:var(--mono);font-size:9.5px;line-height:16px;letter-spacing:.35px;text-transform:uppercase;color:var(--w-mut)}
+  .sw .wireframe-option-block .wf-board{display:grid!important}
+  @media(max-width:940px){
+    .sw .wireframe-option-block .wf-board{display:block!important}
+    .sw .wireframe-option-block + .wireframe-option-block{margin-top:80px;padding-top:54px}
+  }
+  @media(max-width:650px){
+    .sw .wf-option-label{display:block}
+    .sw .wf-option-label h3{font-size:22px;line-height:28px}
+    .sw .wf-option-label p{margin-top:3px}
+    .sw .wf-option-sequence{font-size:8.5px;line-height:14px}
+  }
+
+  /* Step 4 design system typography and spacing */
+  .sw{
+    --ds-layout-01:16px;
+    --ds-layout-02:24px;
+    --ds-layout-03:32px;
+    --ds-layout-04:48px;
+    --ds-layout-05:64px;
+    --ds-layout-06:80px;
+    --ds-layout-07:120px;
+  }
+  .sw .wf-board{grid-template-columns:minmax(720px,1fr) 64px minmax(340px,380px)}
+  .sw .wf-browser{border-radius:12px}
+  .sw .wf-page{padding:0;background:#fff}
+
+  .sw .wire-section{
+    padding:0 0 var(--ds-layout-07);
+    border-bottom:0;
+    overflow:visible;
+    background:#fff;
+  }
+  .sw .wire-section:last-child{padding-bottom:0}
+  .sw .wire-section > .wire-inner{
+    height:100%;
+    min-height:0;
+    padding:var(--ds-layout-06) var(--ds-layout-04);
+    border:1px dashed var(--w-line);
+    background:#fff;
+  }
+  .sw .wire-section:last-child > .wire-inner{height:100%}
+
+  .sw .wf-h-ann{height:192px}
+  .sw .wf-h-hero{height:600px}
+  .sw .wf-h-trust{height:376px}
+  .sw .wf-h-data,.sw .wf-h-context,.sw .wf-h-agentic{height:500px}
+  .sw .wf-h-solutions{height:690px}
+  .sw .wf-h-proof{height:900px}
+  .sw .wf-h-integrations{height:500px}
+  .sw .wf-h-start{height:720px}
+  .sw .wf-h-faq{height:680px}
+  .sw .wf-h-close{height:400px}
+
+  .sw .announce-ph{
+    height:72px;
+    min-height:72px;
+    margin:0;
+    padding:0 var(--ds-layout-03);
+    border-radius:0;
+    gap:var(--ds-layout-03);
+    flex-wrap:nowrap;
+  }
+  .sw .announcement-copy{font-size:16px;line-height:26px;max-width:760px}
+  .sw .announcement-link{font-size:12px;line-height:20px;letter-spacing:.5px}
+
+  .sw .hero-ph{padding:var(--ds-layout-06) var(--ds-layout-04)}
+  .sw .hero-copy{max-width:820px}
+  .sw .wire-h1{
+    font-size:48px;
+    line-height:58px;
+    letter-spacing:-1.2px;
+    padding-bottom:32px;
+  }
+  .sw .wire-h2,
+  .sw .wire-section-title{
+    font-size:40px;
+    line-height:48px;
+    letter-spacing:-.8px;
+    padding-bottom:16px;
+    margin:0;
+  }
+  .sw .wire-card-title{
+    font-size:32px;
+    line-height:38px;
+    letter-spacing:-.45px;
+    padding-bottom:16px;
+    margin:0;
+  }
+  .sw .wire-copy,
+  .sw .wire-body{
+    font-size:16px;
+    line-height:26px;
+    margin:0;
+    max-width:680px;
+  }
+  .sw .wire-small{font-size:14px;line-height:22px;margin:8px 0 0}
+  .sw .hero-actions{gap:16px;margin-top:32px}
+  .sw .wire-button{
+    min-height:48px;
+    min-width:128px;
+    padding:0 24px;
+    font-size:12px;
+    line-height:20px;
+    border-radius:6px;
+  }
+
+  .sw .trust-ph{
+    grid-template-columns:240px 1fr;
+    gap:48px;
+    padding:64px 48px;
+  }
+  .sw .trust-stat{padding-right:32px}
+  .sw .trust-number{font-size:48px;line-height:58px}
+  .sw .logo-strip{gap:16px}
+  .sw .logo-strip i{height:64px}
+
+  .sw .platform-section-ph{
+    grid-template-columns:minmax(0,.9fr) minmax(320px,1.1fr);
+    gap:64px;
+    padding:80px 48px;
+  }
+  .sw .platform-text{max-width:520px}
+  .sw .platform-text .wire-copy{margin-top:0}
+  .sw .simple-diagram{height:220px;font-size:12px;letter-spacing:.8px}
+
+  .sw .section-head{
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:start;
+    margin:0 0 48px;
+  }
+  .sw .wire-grid{gap:24px}
+  .sw .wire-card{
+    padding:32px;
+    border-radius:8px;
+  }
+  .sw .solution-card{height:300px}
+  .sw .solution-card .wire-body,
+  .sw .start-card .wire-body{margin-top:0}
+  .sw .wire-link{font-size:12px;line-height:20px;padding-top:24px}
+
+  .sw .proof-ph{padding:80px 48px}
+  .sw .proof-ph > .wire-body{max-width:720px}
+  .sw .metric-row{gap:24px;margin:48px 0 32px}
+  .sw .metric{padding:32px}
+  .sw .metric-number{font-size:40px;line-height:48px}
+  .sw .proof-grid{grid-template-columns:1.35fr .9fr;gap:24px}
+  .sw .story-card{height:300px;grid-template-columns:112px 1fr;gap:24px}
+  .sw .story-logo{height:72px}
+  .sw .story-quote{font-size:16px;line-height:26px;margin-bottom:16px}
+  .sw .story-meta{font-size:11px;line-height:18px}
+  .sw .analyst-stack{gap:24px}
+  .sw .analyst-card{height:138px;grid-template-columns:64px 1fr;gap:16px}
+  .sw .badge-ph{width:56px;height:56px}
+  .sw .analyst-name{font-size:18px;line-height:26px}
+
+  .sw .integration-ph{padding:80px 48px}
+  .sw .integration-ph .wire-copy{max-width:680px}
+  .sw .integration-diagram{width:min(100%,720px);height:160px;margin-top:32px}
+
+  .sw .start-ph{padding:80px 48px}
+  .sw .start-grid{gap:24px;margin-top:48px}
+  .sw .start-card{height:320px}
+  .sw .small-diagram{height:128px;margin-top:24px}
+
+  .sw .faq-ph{padding:80px 48px}
+  .sw .faq-list{margin-top:48px}
+  .sw .faq-row{height:64px}
+  .sw .faq-question{font-size:16px;line-height:26px}
+
+  .sw .close-ph{
+    height:100%;
+    margin:0;
+    padding:80px 48px;
+  }
+  .sw .close-title{font-size:40px;line-height:48px;letter-spacing:-.8px;padding-bottom:16px}
+  .sw .close-copy{font-size:16px;line-height:26px;margin:0;max-width:680px}
+  .sw .close-actions{gap:16px;margin-top:32px}
+
+  .sw .seo-note{align-items:center}
+  .sw .seo-card{padding:24px 20px}
+  .sw .seo-top{margin-bottom:8px}
+  .sw .seo-top h3{font-size:16px;line-height:22px}
+  .sw .seo-card p{font-size:14px;line-height:22px}
+  .sw .seo-note.compact{padding-top:0;padding-bottom:0}
+  .sw .seo-note.compact .seo-card{padding:18px 20px}
+  .sw .seo-note.compact .seo-top{margin-bottom:6px}
+  .sw .seo-note.compact .seo-top h3{font-size:15px;line-height:21px}
+  .sw .seo-note.compact .seo-card p{font-size:13px;line-height:20px}
+
+  @media(max-width:1120px){
+    .sw .wf-board{grid-template-columns:minmax(650px,1fr) 52px 320px}
+    .sw .wire-section > .wire-inner{padding-left:40px;padding-right:40px}
+    .sw .platform-section-ph,.sw .proof-ph,.sw .integration-ph,.sw .start-ph,.sw .faq-ph{padding-left:40px;padding-right:40px}
+  }
+  @media(max-width:940px){
+    .sw .wf-board{display:block!important}
+  }
+  @media(max-width:650px){
+    .sw .wire-section{padding-bottom:80px}
+    .sw .wire-section > .wire-inner{height:100%;padding:64px 24px}
+    .sw .wf-h-ann{height:176px}
+    .sw .wf-h-hero{height:560px}
+    .sw .wf-h-trust{height:560px}
+    .sw .wf-h-data,.sw .wf-h-context,.sw .wf-h-agentic{height:660px}
+    .sw .wf-h-solutions{height:1260px}
+    .sw .wf-h-proof{height:1480px}
+    .sw .wf-h-integrations{height:600px}
+    .sw .wf-h-start{height:1240px}
+    .sw .wf-h-faq{height:720px}
+    .sw .wf-h-close{height:440px}
+    .sw .announce-ph{height:96px;min-height:96px;padding:16px 24px;flex-direction:column;gap:4px}
+    .sw .announcement-copy{font-size:14px;line-height:22px}
+    .sw .wire-h1{font-size:40px;line-height:48px;padding-bottom:24px}
+    .sw .wire-h2,.sw .wire-section-title{font-size:32px;line-height:40px;padding-bottom:16px}
+    .sw .wire-card-title{font-size:24px;line-height:32px;padding-bottom:16px}
+    .sw .wire-copy,.sw .wire-body{font-size:16px;line-height:26px}
+    .sw .hero-ph{padding:64px 24px}
+    .sw .trust-ph{grid-template-columns:1fr;gap:32px;padding:64px 24px}
+    .sw .trust-stat{border-right:0;border-bottom:1px solid var(--w-line2);padding:0 0 24px}
+    .sw .logo-strip{grid-template-columns:repeat(2,1fr)}
+    .sw .platform-section-ph{grid-template-columns:1fr;gap:32px;padding:64px 24px}
+    .sw .section-head{grid-template-columns:1fr;gap:24px;margin-bottom:32px}
+    .sw .wire-3,.sw .start-grid,.sw .metric-row,.sw .proof-grid{grid-template-columns:1fr}
+    .sw .solution-card,.sw .start-card{height:300px}
+    .sw .proof-ph,.sw .integration-ph,.sw .start-ph,.sw .faq-ph{padding:64px 24px}
+    .sw .metric-row,.sw .start-grid,.sw .faq-list{margin-top:32px}
+    .sw .story-card{height:360px;grid-template-columns:1fr}
+    .sw .analyst-card{height:150px}
+    .sw .integration-diagram{height:180px}
+    .sw .close-ph{padding:80px 24px}
+    .sw .close-title{font-size:32px;line-height:40px}
+  }
+
+
+
+  /* Step 4 wireframe only: Elastic design system typography and spacing */
+  #sw .wrap{max-width:1240px}
+  #sw .wf-board{
+    display:grid!important;
+    grid-template-columns:minmax(820px,900px) 64px minmax(360px,400px)!important;
+    justify-content:center;
+    align-items:stretch;
+  }
+  #sw .wf-browser{
+    min-width:0;
+    border:1px solid var(--w-line)!important;
+    border-radius:12px!important;
+    overflow:hidden;
+    background:#fff;
+  }
+  #sw .wf-chrome,#sw .conn-head,#sw .seo-head{height:40px!important;min-height:40px!important}
+  #sw .wf-page{padding:0!important;background:#fff!important}
+
+  #sw .wire-section{
+    position:relative;
+    padding:0 0 120px!important;
+    border:0!important;
+    overflow:visible!important;
+    background:#fff!important;
+  }
+  #sw .wire-section:last-child{padding-bottom:0!important}
+  #sw .wire-section > .wire-inner{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    height:100%!important;
+    min-height:0!important;
+    padding:80px 48px!important;
+    border:1px dashed #D4DAE5!important;
+    background:#fff!important;
+  }
+  #sw .wire-section.focus{box-shadow:none!important;background:#fff!important}
+
+  #sw .wf-h-ann{height:216px!important}
+  #sw .wf-h-hero{height:640px!important}
+  #sw .wf-h-trust{height:440px!important}
+  #sw .wf-h-data,#sw .wf-h-context,#sw .wf-h-agentic{height:560px!important}
+  #sw .wf-h-solutions{height:760px!important}
+  #sw .wf-h-proof{height:980px!important}
+  #sw .wf-h-integrations{height:560px!important}
+  #sw .wf-h-start{height:800px!important}
+  #sw .wf-h-faq{height:720px!important}
+  #sw .wf-h-close{height:440px!important}
+
+  #sw .announce-ph{
+    height:96px!important;
+    min-height:96px!important;
+    margin:0!important;
+    padding:24px 48px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:32px!important;
+    border-radius:0!important;
+  }
+  #sw .announcement-copy{
+    font-family:var(--body)!important;
+    font-size:16px!important;
+    line-height:26px!important;
+    max-width:680px!important;
+  }
+  #sw .announcement-link{
+    font-family:var(--body)!important;
+    font-size:14px!important;
+    line-height:22px!important;
+  }
+
+  #sw .hero-ph{padding:80px 64px!important;text-align:center!important;align-items:center!important}
+  #sw .hero-copy{width:min(100%,820px)!important;max-width:820px!important;margin:0 auto!important}
+  #sw .wire-h1{
+    font-family:var(--display)!important;
+    font-weight:800!important;
+    font-size:48px!important;
+    line-height:58px!important;
+    letter-spacing:-1.2px!important;
+    margin:0!important;
+    padding:0 0 32px!important;
+    color:var(--w-ink)!important;
+  }
+  #sw .wire-h2,#sw .wire-section-title{
+    font-family:var(--display)!important;
+    font-weight:800!important;
+    font-size:40px!important;
+    line-height:48px!important;
+    letter-spacing:-.8px!important;
+    margin:0!important;
+    padding:0 0 16px!important;
+    color:var(--w-ink)!important;
+  }
+  #sw .wire-card-title{
+    font-family:var(--display)!important;
+    font-weight:800!important;
+    font-size:32px!important;
+    line-height:38px!important;
+    letter-spacing:-.45px!important;
+    margin:0!important;
+    padding:0 0 16px!important;
+    color:var(--w-ink)!important;
+  }
+  #sw .wire-copy,#sw .wire-body{
+    font-family:var(--body)!important;
+    font-size:16px!important;
+    line-height:26px!important;
+    margin:0!important;
+    max-width:680px!important;
+    color:var(--w-ink)!important;
+  }
+  #sw .wire-small{font-family:var(--body)!important;font-size:14px!important;line-height:22px!important;margin:8px 0 0!important}
+  #sw .hero-actions,#sw .close-actions{display:flex!important;justify-content:center!important;gap:16px!important;margin-top:32px!important}
+  #sw .wire-button{
+    min-width:128px!important;
+    min-height:48px!important;
+    padding:0 24px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    font-family:var(--body)!important;
+    font-size:14px!important;
+    line-height:22px!important;
+  }
+
+  #sw .trust-ph{display:grid!important;grid-template-columns:240px 1fr!important;gap:48px!important;align-items:center!important}
+  #sw .trust-number{font-family:var(--display)!important;font-size:48px!important;line-height:58px!important;font-weight:800!important}
+  #sw .logo-strip{display:grid!important;grid-template-columns:repeat(5,1fr)!important;gap:16px!important}
+  #sw .logo-strip i{height:64px!important}
+
+  #sw .platform-section-ph{display:grid!important;grid-template-columns:minmax(0,.9fr) minmax(320px,1.1fr)!important;gap:64px!important;align-items:center!important}
+  #sw .simple-diagram{height:240px!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:14px!important;line-height:22px!important;letter-spacing:.8px!important}
+
+  #sw .section-head{display:grid!important;grid-template-columns:1fr 1fr!important;gap:64px!important;align-items:start!important;margin:0 0 48px!important}
+  #sw .wire-grid{gap:24px!important}
+  #sw .wire-card{padding:32px!important;border-radius:8px!important}
+  #sw .solution-card{height:320px!important}
+  #sw .wire-link{font-size:14px!important;line-height:22px!important;padding-top:24px!important}
+
+  #sw .proof-ph{padding:80px 48px!important}
+  #sw .metric-row{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:24px!important;margin:48px 0 32px!important}
+  #sw .metric{padding:32px!important}
+  #sw .metric-number{font-family:var(--display)!important;font-size:40px!important;line-height:48px!important;font-weight:800!important}
+  #sw .proof-grid{display:grid!important;grid-template-columns:1.35fr .9fr!important;gap:24px!important}
+  #sw .story-card{height:320px!important;grid-template-columns:112px 1fr!important;gap:24px!important}
+  #sw .story-quote{font-size:16px!important;line-height:26px!important}
+  #sw .analyst-stack{gap:24px!important}
+  #sw .analyst-card{height:148px!important;padding:24px!important}
+  #sw .analyst-name{font-size:18px!important;line-height:26px!important}
+
+  #sw .integration-ph{text-align:center!important;align-items:center!important;padding:80px 48px!important}
+  #sw .integration-ph .wire-copy{margin-left:auto!important;margin-right:auto!important}
+  #sw .integration-diagram{width:min(100%,720px)!important;height:176px!important;margin-top:32px!important}
+
+  #sw .start-ph{padding:80px 48px!important}
+  #sw .start-grid{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:24px!important;margin-top:48px!important}
+  #sw .start-card{height:352px!important}
+  #sw .small-diagram{height:136px!important;margin-top:24px!important}
+
+  #sw .faq-ph{padding:80px 48px!important}
+  #sw .faq-list{margin-top:48px!important}
+  #sw .faq-row{height:72px!important;padding:0 8px!important}
+  #sw .faq-question{font-size:16px!important;line-height:26px!important}
+
+  #sw .close-ph{height:100%!important;margin:0!important;padding:80px 48px!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important}
+  #sw .close-title{font-family:var(--display)!important;font-size:40px!important;line-height:48px!important;font-weight:800!important;padding:0 0 16px!important;margin:0!important}
+  #sw .close-copy{font-size:16px!important;line-height:26px!important;margin:0!important;max-width:680px!important}
+
+  #sw .wf-connectors,#sw .wf-seo{min-width:0}
+  #sw .seo-card{padding:24px 20px!important}
+  #sw .seo-top h3{font-size:16px!important;line-height:22px!important}
+  #sw .seo-card p{font-size:14px!important;line-height:22px!important}
+
+  @media(max-width:1280px){
+    #sw .wrap{max-width:1240px}
+    #sw .wf-board{grid-template-columns:minmax(720px,1fr) 52px 340px!important}
+  }
+  @media(max-width:1020px){
+    #sw .wf-board{display:block!important}
+    #sw .wf-connectors{display:none!important}
+    #sw .wf-seo{margin-top:32px!important}
+  }
+  @media(max-width:650px){
+    #sw .wire-section{padding-bottom:80px!important}
+    #sw .wire-section > .wire-inner{padding:64px 24px!important}
+    #sw .wf-h-ann{height:200px!important}
+    #sw .wf-h-hero{height:600px!important}
+    #sw .wf-h-trust{height:620px!important}
+    #sw .wf-h-data,#sw .wf-h-context,#sw .wf-h-agentic{height:700px!important}
+    #sw .wf-h-solutions{height:1360px!important}
+    #sw .wf-h-proof{height:1600px!important}
+    #sw .wf-h-integrations{height:640px!important}
+    #sw .wf-h-start{height:1360px!important}
+    #sw .wf-h-faq{height:780px!important}
+    #sw .wf-h-close{height:480px!important}
+    #sw .announce-ph{height:120px!important;min-height:120px!important;padding:24px!important;flex-direction:column!important;gap:8px!important}
+    #sw .hero-ph{padding:64px 24px!important}
+    #sw .wire-h1{font-size:40px!important;line-height:48px!important;padding-bottom:24px!important}
+    #sw .wire-h2,#sw .wire-section-title{font-size:32px!important;line-height:40px!important;padding-bottom:16px!important}
+    #sw .wire-card-title{font-size:24px!important;line-height:32px!important;padding-bottom:16px!important}
+    #sw .trust-ph,#sw .platform-section-ph,#sw .section-head,#sw .proof-grid{grid-template-columns:1fr!important;gap:32px!important}
+    #sw .logo-strip{grid-template-columns:repeat(2,1fr)!important}
+    #sw .wire-3,#sw .start-grid,#sw .metric-row{grid-template-columns:1fr!important}
+    #sw .solution-card,#sw .start-card{height:auto!important;min-height:300px!important}
+    #sw .proof-ph,#sw .integration-ph,#sw .start-ph,#sw .faq-ph,#sw .close-ph{padding:64px 24px!important}
+    #sw .hero-actions,#sw .close-actions{flex-direction:column!important;align-items:stretch!important}
+  }
+
+
+
+  /* Step 4 revision: modules touch and hero card menu is its own section */
+  #sw .wire-section{padding-bottom:0!important}
+  #sw .wf-h-ann{height:96px!important}
+  #sw .wf-h-hero{height:460px!important}
+  #sw .wf-h-menu{height:600px!important}
+  #sw .wf-h-trust{height:320px!important}
+  #sw .wf-h-data,#sw .wf-h-context,#sw .wf-h-agentic{height:440px!important}
+  #sw .wf-h-solutions{height:640px!important}
+  #sw .wf-h-proof{height:820px!important}
+  #sw .wf-h-integrations{height:480px!important}
+  #sw .wf-h-start{height:680px!important}
+  #sw .wf-h-faq{height:680px!important}
+  #sw .wf-h-close{height:440px!important}
+
+  #sw .menu-ph{padding:80px 48px!important;justify-content:flex-start!important}
+  #sw .menu-head{max-width:720px}
+  #sw .menu-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:48px}
+  #sw .menu-card{height:300px!important;display:flex;flex-direction:column}
+  #sw .menu-card .wire-body{margin:0!important}
+  #sw .menu-card .wire-link{margin-top:auto!important}
+
+  @media(max-width:1280px){
+    #sw .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+    #sw .wf-h-menu{height:960px!important}
+  }
+  @media(max-width:1020px){
+    #sw .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  }
+  @media(max-width:650px){
+    #sw .wire-section{padding-bottom:0!important}
+    #sw .wf-h-ann{height:120px!important}
+    #sw .wf-h-hero{height:520px!important}
+    #sw .wf-h-menu{height:1600px!important}
+    #sw .wf-h-trust{height:540px!important}
+    #sw .wf-h-data,#sw .wf-h-context,#sw .wf-h-agentic{height:620px!important}
+    #sw .wf-h-solutions{height:1240px!important}
+    #sw .wf-h-proof{height:1480px!important}
+    #sw .wf-h-integrations{height:560px!important}
+    #sw .wf-h-start{height:1240px!important}
+    #sw .wf-h-faq{height:700px!important}
+    #sw .wf-h-close{height:440px!important}
+    #sw .menu-ph{padding:64px 24px!important}
+    #sw .menu-grid{grid-template-columns:1fr!important;gap:24px;margin-top:32px}
+    #sw .menu-card{height:300px!important}
+  }
+
+
+
+  /* Step 4: compact carousel replacement and consistent eyebrow hierarchy */
+  #sw .wire-eyebrow,
+  #sw .wire-card-eyebrow{
+    font-family:var(--body)!important;
+    font-size:13px!important;
+    line-height:20px!important;
+    font-weight:600!important;
+    letter-spacing:1.1px!important;
+    text-transform:uppercase!important;
+    color:var(--w-mut)!important;
+    margin:0 0 12px!important;
+  }
+  #sw .wire-card-eyebrow{
+    font-size:11px!important;
+    line-height:16px!important;
+    letter-spacing:.9px!important;
+    margin-bottom:8px!important;
+  }
+  #sw .close-ph .wire-eyebrow{color:#C9CED6!important}
+
+  #sw .wf-h-menu{height:420px!important}
+  #sw .menu-ph{
+    padding:56px 48px!important;
+    justify-content:center!important;
+  }
+  #sw .menu-grid{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:24px!important;
+    margin:0!important;
+  }
+  #sw .menu-card{
+    height:220px!important;
+    min-height:220px!important;
+    padding:24px!important;
+    display:flex!important;
+    flex-direction:column!important;
+  }
+  #sw .wire-menu-title{
+    font-family:var(--display)!important;
+    font-weight:700!important;
+    font-size:20px!important;
+    line-height:28px!important;
+    letter-spacing:-.2px!important;
+    color:var(--w-ink)!important;
+    margin:0!important;
+    padding:0 0 8px!important;
+  }
+  #sw .menu-card .wire-body{
+    font-size:14px!important;
+    line-height:22px!important;
+  }
+  #sw .menu-card .wire-link{
+    margin-top:auto!important;
+    padding-top:16px!important;
+  }
+
+  #sw .wf-h-trust{height:560px!important}
+  #sw .trust-ph{
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    gap:40px!important;
+  }
+  #sw .trust-head{max-width:720px!important}
+  #sw .trust-content{
+    display:grid!important;
+    grid-template-columns:240px 1fr!important;
+    gap:48px!important;
+    align-items:center!important;
+  }
+
+  @media(max-width:1280px){
+    #sw .wf-h-menu{height:700px!important}
+    #sw .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  }
+  @media(max-width:650px){
+    #sw .wf-h-menu{height:1120px!important}
+    #sw .menu-ph{padding:64px 24px!important}
+    #sw .menu-grid{grid-template-columns:1fr!important;gap:24px!important}
+    #sw .menu-card{height:220px!important;min-height:220px!important}
+    #sw .wf-h-trust{height:720px!important}
+    #sw .trust-content{grid-template-columns:1fr!important;gap:32px!important}
+  }
+</style>
+</head>
+<body>
+<header class="head">
+<div class="wrap">
+<div class="kicker">Elastic homepage redesign</div>
+<h1>The problem, the flows, and what each section does</h1>
+</div>
+</header>
+<nav class="tabs" role="tablist">
+<div class="wrap" style="display:flex;gap:0;padding-left:32px;padding-right:32px;max-width:none">
+<button class="tab" data-pane="s1" role="tab"><span class="n">01</span>The problem</button>
+<button class="tab" data-pane="s2" role="tab"><span class="n">02</span>Two flows</button>
+<button class="tab" data-pane="s3" role="tab"><span class="n">03</span>What each section does</button>
+<button class="tab on" data-pane="sw" role="tab"><span class="n">04</span>Homepage wireframe</button>
+<button class="tab" data-pane="s4" role="tab"><span class="n">05</span>Platform &amp; Solutions</button>
+</div>
+</nav>
+<!-- ================================================== STEP 1 ================================================== -->
+<section class="pane s1" id="s1">
+<div class="wrap">
+<div class="pane-intro">
+<h2>Step 1. Agree on the problem</h2>
+<p>The live homepage, walked top to bottom by its real section names. Each row shows what is wrong through best practice, your perspective, and UX, then what the SEO brief actually says about that same spot, then whether we agree.</p>
+</div>
+<div class="correction"><b>Correction after two source checks against the SEO brief:</b> three rows say SEO has no opinion instead of citing findings the brief never made. The Hero row was tightened after overstating a small claim. The Want results and Get started rows show the brief's actual fix, remove the heading tag and use paragraph plus button, rather than an invented "add keywords to it" version.</div>
+<table>
+<thead><tr><th style="width:15%">Section, top to bottom</th><th style="width:38%">What is wrong today (Best practice · You · UX)</th><th style="width:32%">SEO brief</th><th style="width:15%">Verdict</th></tr></thead>
+<tbody>
+<tr><td class="sec"><span class="n">01</span><span class="nm">Hero</span></td><td class="ours"><span class="lens">Best practice</span>Better retrieval, better answers is a brag, and better than what is never answered. <span class="lens">You</span>it names only retrieval, so it sells the part, not the company. <span class="lens">UX</span>no product shown, and the line means nothing to a first-time visitor.</td><td class="seo">Called out as a campaign tagline with no searchable keyword, no product category, and no audience signal. The brief's recommended H1 names all three solutions. Top-tier fix, but the number one overall fix is the Observability H1, not this one.</td><td class="v"><span class="tag agree">Agree</span></td></tr>
+<tr><td class="sec"><span class="n">02</span><span class="nm">CTA</span></td><td class="ours"><span class="lens">Best practice</span>every button is a promise, and a generic get-started promises nothing before the page has said what Elastic is. <span class="lens">You</span>we ask for the click before we have earned it.</td><td class="seo">SEO has no opinion.</td><td class="v"><span class="tag keep">No SEO claim</span><span class="vwhy">Our finding, not a brief finding.</span></td></tr>
+<tr><td class="sec"><span class="n">03</span><span class="nm">Carousel</span></td><td class="ours"><span class="lens">Best practice</span>aim the proof where it gets read. A carousel hides it on a timer, and most people never reach the later slides. <span class="lens">You</span>our best benchmark, a large speed advantage at lower cost, is trapped in it.</td><td class="seo">SEO has no opinion on the current carousel. Separately, the brief does require adding a customer-stories carousel as part of the redesign, but that lives in the new Proof section, not here.</td><td class="v"><span class="tag keep">No SEO claim</span><span class="vwhy">The critique of the current carousel is a design finding, not a brief finding.</span></td></tr>
+<tr><td class="sec"><span class="n">04</span><span class="nm">Customer stats</span></td><td class="ours"><span class="lens">Best practice</span>a number with no source does not persuade. <span class="lens">You</span>trusted by developers from Fortune 500 companies is a stronger line than a bare percentage, and every number needs its source.</td><td class="seo">The Fortune 500 figure and the others are unsourced. Source every one. Unsourced stats are not cited by AI.</td><td class="v"><span class="tag agree">Agree</span></td></tr>
+<tr><td class="sec"><span class="n">05</span><span class="nm">Platform section</span><span class="vwhy" style="margin-top:4px">covers search, security, observability, agentic AI</span></td><td class="ours"><span class="lens">You</span>lines up four things as if equal. Agentic is a layer, not a fourth solution. The diagram makes other companies stars and hides Elastic's role, product shots are skeletons, and the strongest proof, the real Agent Builder screen, is buried at the bottom. <span class="lens">UX</span>several full-height blocks in a row is a scroll marathon.</td><td class="seo">Explain the one platform, do not just list products, and name all three solutions equally. But the brief treats agentic AI as a fourth solution.</td><td class="v"><span class="tag delta">Delta</span><span class="vwhy">We agree the section is broken. We differ on the fix: our three-layer model with agentic as a layer, versus adding agentic as a fourth solution.</span></td></tr>
+<tr><td class="sec"><span class="n">06</span><span class="nm">Want results like these?</span></td><td class="ours"><span class="lens">Best practice</span>label a section by what is in it, not with a sales prompt. <span class="lens">You</span>the heading tells the reader nothing about the company.</td><td class="seo">Flagged as a CTA used as a heading. The brief's actual fix is to remove the heading tag and style this as a paragraph with a button.</td><td class="v"><span class="tag agree">Agree</span></td></tr>
+<tr><td class="sec"><span class="n">07</span><span class="nm">Stats section</span></td><td class="ours"><span class="lens">Best practice</span>specific and attributed beats round and vague. <span class="lens">You</span>we have strong numbers and people do not care, because a floating number with no source is ignorable.</td><td class="seo">The performance figures here are unsourced. Source each one.</td><td class="v"><span class="tag agree">Agree</span><span class="vwhy">If Customer stats and Stats section are the same block on the live page, we are double-counting. Worth confirming.</span></td></tr>
+<tr><td class="sec"><span class="n">08</span><span class="nm">Get started now</span></td><td class="ours"><span class="lens">Best practice</span>real command, real product, real promise. <span class="lens">You</span>the strongest part of the page, keep its bones.</td><td class="seo">Keep the conversion path. The heading itself is flagged as a CTA used as a heading. Fix is to remove the heading tag and style as paragraph plus button.</td><td class="v"><span class="tag keep">Keep</span><span class="vwhy">Fix is to the markup, not new words.</span></td></tr>
+<tr><td class="sec"><span class="n">09</span><span class="nm">Discover everything you can do with Elastic</span></td><td class="ours"><span class="lens">You</span>flagged this section by name. I do not have its actual contents in front of me, so I will not invent a finding to match. It needs a real look before it belongs in this table.</td><td class="seo">SEO has no opinion.</td><td class="v"><span class="tag keep">Needs review</span><span class="vwhy">Paste the section content and this row gets filled for real.</span></td></tr>
+</tbody>
+</table>
+<div class="cross">
+<h3>Three disagreements that ride the whole page</h3>
+<p>These do not live in a single block. They are the only real arguments once the section-level diagnosis is agreed.</p>
+<ul>
+<li><b>How long the page runs.</b> We compress with tabs, toggles, and disclosure. The brief leans on a longer template with many stacked sections.</li>
+<li><b>What tier we design at.</b> You aim at the frontier tech tier, Amazon and OpenAI level. The brief benchmarks mainstream enterprise software.</li>
+<li><b>Voice.</b> You care that it stops sounding corporate and earns the developer. The brief is silent on voice. A blind spot, not a conflict.</li>
+</ul>
+</div>
+<div class="paneftr"><b>Step 1 of 6.</b> Section by section, our read and the SEO read agree almost everywhere. Once the diagnosis is settled, Step 2 lays out the two possible flows for the redesigned page.</div>
+</div>
+</section>
+<!-- ================================================== STEP 2 ================================================== -->
+<section class="pane s2" id="s2">
+<div class="wrap">
+<div class="pane-intro">
+<h2>Step 2. Two flows, low-fi</h2>
+<p>Just the stack of sections, top to bottom, for each option. No modules, no layout inside the boxes yet. Both options have the same ten sections at the same visual weight. The only difference is where Platform idea and Solutions sit.</p>
+</div>
+<div class="flows">
+<!-- OPTION 1 -->
+<div class="col">
+<div class="col-label"><div class="name">Option 1 · Layers first</div><div class="why">Platform idea leads, solutions hang off it. For the leadership room.</div></div>
+<div class="browser">
+<div class="chrome"><div class="dots"><span></span><span></span><span></span></div><div class="addr">elastic.co</div></div>
+<div class="page">
+<div class="box h-announce"><div class="lbl">Announcement bar</div></div>
+<div class="box h-hero"><div class="idx">02</div><div class="lbl">Hero</div><div class="sk w70"></div><div class="sk w52"></div></div>
+<div class="box h-trust"><div class="idx">03</div><div class="lbl">Trust</div><div class="sk w70"></div></div>
+<div class="box h-platform moved"><span class="movepin">Leads here</span><div class="idx">04</div><div class="lbl">Platform idea</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box h-solutions moved"><div class="idx">05</div><div class="lbl">Solutions</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box h-proof-big"><div class="idx">06</div><div class="lbl">Proof</div><div class="sk-sub">Numbers · customer stories · analyst nods</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box h-integrations"><div class="idx">07</div><div class="lbl">Integrations</div></div>
+<div class="box h-getstarted"><div class="idx">08</div><div class="lbl">Get started</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box h-faq"><div class="idx">09</div><div class="lbl">FAQ</div><div class="sk w70"></div><div class="sk w52"></div></div>
+<div class="box h-close"><div class="idx">10</div><div class="lbl">Close</div><div class="sk w60"></div></div>
+</div>
+</div>
+</div>
+<!-- OPTION 2 -->
+<div class="col">
+<div class="col-label"><div class="name">Option 2</div><div class="why">Solutions first, platform idea explained later. For real traffic.</div></div>
+<div class="browser">
+<div class="chrome"><div class="dots"><span></span><span></span><span></span></div><div class="addr">elastic.co</div></div>
+<div class="page">
+<div class="box h-announce"><div class="lbl">Announcement bar</div></div>
+<div class="box h-hero"><div class="idx">02</div><div class="lbl">Hero</div><div class="sk w70"></div><div class="sk w52"></div></div>
+<div class="box h-trust"><div class="idx">03</div><div class="lbl">Trust</div><div class="sk w70"></div></div>
+<div class="box h-solutions moved"><span class="movepin">Comes first</span><div class="idx">04</div><div class="lbl">Solutions</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box h-platform moved"><span class="movepin">Comes later</span><div class="idx">05</div><div class="lbl">Platform idea</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box h-proof-big"><div class="idx">06</div><div class="lbl">Proof</div><div class="sk-sub">Numbers · customer stories · analyst nods</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box h-integrations"><div class="idx">07</div><div class="lbl">Integrations</div></div>
+<div class="box h-getstarted"><div class="idx">08</div><div class="lbl">Get started</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box h-faq"><div class="idx">09</div><div class="lbl">FAQ</div><div class="sk w70"></div><div class="sk w52"></div></div>
+<div class="box h-close"><div class="idx">10</div><div class="lbl">Close</div><div class="sk w60"></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="paneftr"><b>Step 2 of 6.</b> Same ten sections in both flows, same visual weight. Only Platform idea and Solutions change position. Pick a flow, then Step 3 explains what each section actually does.</div>
+</div>
+</section>
+<!-- ================================================== STEP 3 ================================================== -->
+<section class="pane s3" id="s3">
+<div class="wrap">
+<div class="pane-intro">
+<h2>Step 3. What each section does</h2>
+<p>Same two flows, now with a callout next to every section explaining, in one line, what it needs to accomplish. Each recommendation combines what the SEO brief requires with the UX call. No copy yet, no design, just the job of each section.</p>
+</div>
+<!-- Option 1 · Layers first DIAGRAM -->
+<div class="diagram">
+<div class="diaghead"><div class="name">Option 1 · Layers first</div><div class="why">Platform idea leads. For the leadership room.</div></div>
+<div class="diag-grid">
+<div class="col-mock">
+<div class="chrome"><div class="dots"><span></span><span></span><span></span></div><div class="addr">elastic.co</div></div>
+<div class="box row-h-announce"><div class="lbl">Announcement bar</div></div>
+<div class="box row-h-hero"><div class="idx">02</div><div class="lbl">Hero</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-trust"><div class="idx">03</div><div class="lbl">Trust</div><div class="sk w70"></div></div>
+<div class="box row-h-platform moved"><div class="idx">04</div><div class="lbl">Platform idea</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box row-h-solutions moved"><div class="idx">05</div><div class="lbl">Solutions</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-proof-big"><div class="idx">06</div><div class="lbl">Proof</div><div class="sk-sub">Numbers · customer stories · analyst nods</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box row-h-integrations"><div class="idx">07</div><div class="lbl">Integrations</div></div>
+<div class="box row-h-getstarted"><div class="idx">08</div><div class="lbl">Get started</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-faq"><div class="idx">09</div><div class="lbl">FAQ</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-close"><div class="idx">10</div><div class="lbl">Close</div><div class="sk w70"></div></div>
+</div>
+<div class="col-conn">
+<div class="spacer"></div>
+<div class="conn row-h-announce"><div class="cnode">1</div></div>
+<div class="conn row-h-hero"><div class="cnode">2</div></div>
+<div class="conn row-h-trust"><div class="cnode">3</div></div>
+<div class="conn row-h-platform moved"><div class="cnode">4</div></div>
+<div class="conn row-h-solutions moved"><div class="cnode">5</div></div>
+<div class="conn row-h-proof-big"><div class="cnode">6</div></div>
+<div class="conn row-h-integrations"><div class="cnode">7</div></div>
+<div class="conn row-h-getstarted"><div class="cnode">8</div></div>
+<div class="conn row-h-faq"><div class="cnode">9</div></div>
+<div class="conn row-h-close"><div class="cnode">10</div></div>
+</div>
+<div class="col-callouts">
+<div class="spacer"></div>
+<div class="callout row-h-announce"><div class="h">Announcement bar</div><div class="b">One line at the top for the newest launch, report, or event. Refresh monthly. Never carries the main message.</div></div>
+<div class="callout row-h-hero"><div class="h">Hero</div><div class="b">One headline that names Elastic and all three solutions, held still. Real product screenshot, not stock. Two buttons.</div></div>
+<div class="callout row-h-trust"><div class="h">Trust</div><div class="b">Row of Fortune 500 logos plus one sourced number. Your line: trusted by developers from Fortune 500 companies.</div></div>
+<div class="callout row-h-platform moved"><div class="h">Platform idea</div><div class="b">The three-layer story: Data, Context, Agentic. Every solution runs through all three. Agentic is a layer, not a fourth door. The ring diagram lives here.</div></div>
+<div class="callout row-h-solutions moved"><div class="h">Solutions</div><div class="b">Three equal doors: Search, Observability, Security. Each opens with the problem. Runs on any cloud, on-prem, or air-gapped.</div></div>
+<div class="callout row-h-proof-big"><div class="h">Proof, all together</div><div class="b">The full trust argument in one section: three or four sourced numbers, three to five named customer quotes with logo and outcome metric, and two to four analyst cards with firm, report, and year.</div></div>
+<div class="callout row-h-integrations"><div class="h">Integrations</div><div class="b">One light strip of partner logos with a total count. Ecosystem signal, not a section.</div></div>
+<div class="callout row-h-getstarted"><div class="h">Get started</div><div class="b">Three real ways in: run locally with one command, cloud trial, or talk to sales. Already the strongest part of the live page.</div></div>
+<div class="callout row-h-faq"><div class="h">FAQ</div><div class="b">Five to seven plain question-and-answer pairs. The single biggest fix for AI answers.</div></div>
+<div class="callout row-h-close"><div class="h">Close</div><div class="b">Dark band. One calm restatement of the whole platform, then two buttons. Ask twice, not four times.</div></div>
+</div>
+</div>
+</div>
+<!-- Option 2 DIAGRAM -->
+<div class="diagram">
+<div class="diaghead"><div class="name">Option 2</div><div class="why">Solutions first, platform idea explained later. For real traffic.</div></div>
+<div class="diag-grid">
+<div class="col-mock">
+<div class="chrome"><div class="dots"><span></span><span></span><span></span></div><div class="addr">elastic.co</div></div>
+<div class="box row-h-announce"><div class="lbl">Announcement bar</div></div>
+<div class="box row-h-hero"><div class="idx">02</div><div class="lbl">Hero</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-trust"><div class="idx">03</div><div class="lbl">Trust</div><div class="sk w70"></div></div>
+<div class="box row-h-solutions moved"><div class="idx">04</div><div class="lbl">Solutions</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-platform moved"><div class="idx">05</div><div class="lbl">Platform idea</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box row-h-proof-big"><div class="idx">06</div><div class="lbl">Proof</div><div class="sk-sub">Numbers · customer stories · analyst nods</div><div class="sk w70"></div><div class="sk w60"></div><div class="sk w52"></div></div>
+<div class="box row-h-integrations"><div class="idx">07</div><div class="lbl">Integrations</div></div>
+<div class="box row-h-getstarted"><div class="idx">08</div><div class="lbl">Get started</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-faq"><div class="idx">09</div><div class="lbl">FAQ</div><div class="sk w70"></div><div class="sk w60"></div></div>
+<div class="box row-h-close"><div class="idx">10</div><div class="lbl">Close</div><div class="sk w70"></div></div>
+</div>
+<div class="col-conn">
+<div class="spacer"></div>
+<div class="conn row-h-announce"><div class="cnode">1</div></div>
+<div class="conn row-h-hero"><div class="cnode">2</div></div>
+<div class="conn row-h-trust"><div class="cnode">3</div></div>
+<div class="conn row-h-solutions moved"><div class="cnode">4</div></div>
+<div class="conn row-h-platform moved"><div class="cnode">5</div></div>
+<div class="conn row-h-proof-big"><div class="cnode">6</div></div>
+<div class="conn row-h-integrations"><div class="cnode">7</div></div>
+<div class="conn row-h-getstarted"><div class="cnode">8</div></div>
+<div class="conn row-h-faq"><div class="cnode">9</div></div>
+<div class="conn row-h-close"><div class="cnode">10</div></div>
+</div>
+<div class="col-callouts">
+<div class="spacer"></div>
+<div class="callout row-h-announce"><div class="h">Announcement bar</div><div class="b">One line at the top for the newest launch, report, or event. Refresh monthly. Never carries the main message.</div></div>
+<div class="callout row-h-hero"><div class="h">Hero</div><div class="b">Same headline job as Option 1. In this flow the hero can also name the pain the buyer feels before naming Elastic as the fix.</div></div>
+<div class="callout row-h-trust"><div class="h">Trust</div><div class="b">Row of Fortune 500 logos plus one sourced number. Your line: trusted by developers from Fortune 500 companies.</div></div>
+<div class="callout row-h-solutions moved"><div class="h">Solutions come first</div><div class="b">Meet the buyer at their job before naming the architecture. Three equal doors, each opening on the problem.</div></div>
+<div class="callout row-h-platform moved"><div class="h">Platform idea, later in the page</div><div class="b">Same three-layer story as Option 1. It comes after the reader has already picked their solution, so it lands as an explanation of how the platform is built, not the opening thesis.</div></div>
+<div class="callout row-h-proof-big"><div class="h">Proof, all together</div><div class="b">The full trust argument in one section: three or four sourced numbers, three to five named customer quotes with logo and outcome metric, and two to four analyst cards with firm, report, and year.</div></div>
+<div class="callout row-h-integrations"><div class="h">Integrations</div><div class="b">One light strip of partner logos with a total count. Ecosystem signal, not a section.</div></div>
+<div class="callout row-h-getstarted"><div class="h">Get started</div><div class="b">Three real ways in: run locally with one command, cloud trial, or talk to sales. Already the strongest part of the live page.</div></div>
+<div class="callout row-h-faq"><div class="h">FAQ</div><div class="b">Five to seven plain question-and-answer pairs. The single biggest fix for AI answers.</div></div>
+<div class="callout row-h-close"><div class="h">Close</div><div class="b">Dark band. One calm restatement of the whole platform, then two buttons. Ask twice, not four times.</div></div>
+</div>
+</div>
+</div>
+<div class="paneftr"><b>Step 3 of 6.</b> Each callout combines what the SEO brief requires with the UX judgment call in plain language. Proof, customer stories, and analyst recognition are consolidated into one Proof section, because all three do the same job: prove Elastic works. Once these jobs are agreed, Step 4 turns each section into the right module.</div>
+</div>
+</section>
+<!-- ================================================== STEP 4 · WIREFRAME ================================================== -->
+<section class="pane sw on" id="sw">
+<div class="wrap">
+<div class="pane-intro">
+<h2>Step 4. Two complete homepage wireframes</h2>
+<p>Option 1 and Option 2 are both shown in full below. Each has its own wireframe, connector column, and SEO annotation rail.</p>
+</div>
+<div aria-label="Wireframe legend" class="wf-key">
+<span><i></i>Homepage wireframe</span>
+<span class="k-seo"><i></i>SEO / LLMO annotation</span>
+<span class="k-hover">Hover either side to trace a section.</span>
+</div>
+<div class="wireframe-option-block" id="step4-option-1">
+<div class="wf-option-label"><h3>Option 1: Platform first</h3><p>Platform layers come before Solutions.</p></div><div aria-label="Section order" class="wf-option-sequence">Announcement, Hero, Menu of the month, Trust, Data, Context, Agentic, Solutions, Proof, Integrations, Getting Started, FAQ, Close</div>
+<div class="wf-board" data-wireframe-option="1">
+<div aria-label="Low fidelity homepage wireframe, option 1" class="wf-browser">
+<div class="wf-chrome"><div class="wf-dots"><i></i><i></i><i></i></div><div class="wf-address">elastic.co</div></div>
+<div class="wf-page"><section class="wire-section wf-h-ann" data-wf="announcement">
+<div class="announce-ph"><span class="announcement-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</span><span class="announcement-link">Lorem ipsum</span></div>
+</section><section class="wire-section wf-h-hero" data-wf="hero">
+<div class="wire-inner hero-ph">
+<div class="hero-copy">
+<div class="wire-eyebrow">Lorem ipsum</div><h1 class="wire-h1">Lorem ipsum dolor sit amet</h1>
+<p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="hero-actions"><span class="wire-button primary">Lorem ipsum</span><span class="wire-button">Dolor sit</span></div>
+</div>
+</div>
+</section>
+<section class="wire-section wf-h-menu" data-wf="menu">
+<div class="wire-inner menu-ph">
+
+<div class="menu-grid">
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+</div>
+</div>
+</section>
+<section class="wire-section wf-h-trust" data-wf="trust">
+<div class="wire-inner trust-ph">
+
+
+<div class="trust-head"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.</p></div><div class="trust-content"><div class="trust-stat"><div class="trust-number">00%</div><p class="wire-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div><div aria-label="Logo placeholders" class="logo-strip"><i>Logo</i><i>Logo</i><i>Logo</i><i>Logo</i><i>Logo</i></div></div></div>
+</section><section class="wire-section wf-h-data" data-wf="data-layer">
+<div class="wire-inner platform-section-ph">
+<div class="platform-text"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p></div>
+<div class="simple-diagram">Diagram</div>
+</div>
+</section><section class="wire-section wf-h-context" data-wf="context-layer">
+<div class="wire-inner platform-section-ph">
+<div class="platform-text"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum.</p></div>
+<div class="simple-diagram">Diagram</div>
+</div>
+</section><section class="wire-section wf-h-agentic" data-wf="agentic-layer">
+<div class="wire-inner platform-section-ph">
+<div class="platform-text"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui, cras mattis consectetur purus sit amet.</p></div>
+<div class="simple-diagram">Diagram</div>
+</div>
+</section><section class="wire-section wf-h-solutions" data-wf="solutions">
+<div class="wire-inner">
+<div class="section-head"><div class="section-copy-head"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2></div><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p></div>
+<div class="wire-grid wire-3">
+<div class="wire-card solution-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card solution-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card solution-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur.</p><div class="wire-link">Lorem ipsum</div></div>
+</div>
+</div>
+</section><section class="wire-section wf-h-proof" data-wf="proof">
+<div class="wire-inner proof-ph">
+<div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+<div class="metric-row"><div class="metric"><div class="metric-number">00x</div><p class="wire-small">Lorem ipsum dolor sit amet.</p></div><div class="metric"><div class="metric-number">00%</div><p class="wire-small">Lorem ipsum dolor sit amet.</p></div><div class="metric"><div class="metric-number">00M</div><p class="wire-small">Lorem ipsum dolor sit amet.</p></div></div>
+<div class="proof-grid"><div class="wire-card story-card"><div class="story-logo">Logo</div><div class="story-copy"><p class="story-quote">“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.”</p><div class="story-meta">Lorem ipsum dolor</div><span class="wire-button">Lorem ipsum</span></div></div><div class="analyst-stack"><div class="wire-card analyst-card"><div class="badge-ph">Logo</div><div><div class="analyst-name">Lorem ipsum dolor</div><p class="wire-small">Lorem ipsum, 2026</p></div></div><div class="wire-card analyst-card"><div class="badge-ph">Logo</div><div><div class="analyst-name">Lorem ipsum dolor</div><p class="wire-small">Lorem ipsum, 2026</p></div></div></div></div>
+</div>
+</section><section class="wire-section wf-h-integrations" data-wf="integrations">
+<div class="wire-inner integration-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.</p><div class="simple-diagram integration-diagram">Diagram</div></div>
+</section><section class="wire-section wf-h-start" data-wf="start">
+<div class="wire-inner start-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.</p><div class="start-grid"><div class="wire-card start-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="simple-diagram small-diagram">Diagram</div></div><div class="wire-card start-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="simple-diagram small-diagram">Diagram</div></div><div class="wire-card start-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="simple-diagram small-diagram">Diagram</div></div></div></div>
+</section><section class="wire-section wf-h-faq" data-wf="faq">
+<div class="wire-inner faq-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="faq-list"><div class="faq-row"><span class="faq-question">Lorem ipsum dolor sit amet consectetur?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Maecenas sed diam eget risus varius?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Aenean lacinia bibendum nulla sed?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Cras justo odio dapibus ac facilisis?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Vestibulum id ligula porta felis euismod?</span><i>+</i></div></div></div>
+</section><section class="wire-section wf-h-close" data-wf="close">
+<div class="close-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="close-title">Lorem ipsum dolor sit amet</h2><p class="close-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui.</p><div class="close-actions"><span class="wire-button primary">Lorem ipsum</span><span class="wire-button">Dolor sit</span></div></div>
+</section></div>
+</div>
+<div aria-hidden="true" class="wf-connectors"><div class="conn-head"></div><div class="wf-connector wf-h-ann" data-wf="announcement"><span class="wf-node">01</span></div><div class="wf-connector wf-h-hero" data-wf="hero"><span class="wf-node">02</span></div><div class="wf-connector wf-h-menu" data-wf="menu"><span class="wf-node">03</span></div><div class="wf-connector wf-h-trust" data-wf="trust"><span class="wf-node">04</span></div><div class="wf-connector wf-h-data" data-wf="data-layer"><span class="wf-node">05</span></div><div class="wf-connector wf-h-context" data-wf="context-layer"><span class="wf-node">06</span></div><div class="wf-connector wf-h-agentic" data-wf="agentic-layer"><span class="wf-node">07</span></div><div class="wf-connector wf-h-solutions" data-wf="solutions"><span class="wf-node">08</span></div><div class="wf-connector wf-h-proof" data-wf="proof"><span class="wf-node">09</span></div><div class="wf-connector wf-h-integrations" data-wf="integrations"><span class="wf-node">10</span></div><div class="wf-connector wf-h-start" data-wf="start"><span class="wf-node">11</span></div><div class="wf-connector wf-h-faq" data-wf="faq"><span class="wf-node">12</span></div><div class="wf-connector wf-h-close" data-wf="close"><span class="wf-node">13</span></div></div>
+<aside aria-label="SEO and LLMO annotations" class="wf-seo"><div class="seo-head">Section and SEO annotations</div><article class="seo-note compact wf-h-ann" data-wf="announcement"><div class="seo-card"><div class="seo-top"><h3>Announcement</h3></div><p>Use one readable line and one supporting link. Keep the primary homepage message in the hero.</p></div></article><article class="seo-note wf-h-hero" data-wf="hero"><div class="seo-card"><div class="seo-top"><h3>Hero</h3></div><p>Use one keyword-led H1. Name Elastic, Search, Observability, and Security in visible HTML.</p></div></article><article class="seo-note wf-h-menu" data-wf="menu"><div class="seo-card"><div class="seo-top"><h3>Menu of the month / carousel replacement</h3></div><p>Use four static cards immediately after the hero. Keep each card heading, supporting copy, and internal link visible in HTML.</p></div></article><article class="seo-note wf-h-trust" data-wf="trust"><div class="seo-card"><div class="seo-top"><h3>Trust</h3></div><p>Customer logo row plus one sourced statistic. Keep the source and attribution visible.</p></div></article><article class="seo-note wf-h-data" data-wf="data-layer"><div class="seo-card"><div class="seo-top"><h3>Platform layer 1: Data, store it</h3></div><p>Use a descriptive H2, a short paragraph, a simple diagram, and a link to deeper platform content.</p></div></article><article class="seo-note wf-h-context" data-wf="context-layer"><div class="seo-card"><div class="seo-top"><h3>Platform layer 2: Context, understand it</h3></div><p>Use a descriptive H2, explain retrieval and grounding in visible text, and link to deeper product content.</p></div></article><article class="seo-note wf-h-agentic" data-wf="agentic-layer"><div class="seo-card"><div class="seo-top"><h3>Platform layer 3: Agentic, act on it</h3></div><p>Use a descriptive H2, explain the capability in visible text, and clearly label any roadmap claim.</p></div></article><article class="seo-note wf-h-solutions" data-wf="solutions"><div class="seo-card"><div class="seo-top"><h3>Solutions: three ways in</h3></div><p>Search, Observability, and Security each get a descriptive H3, a problem statement, and an internal link.</p></div></article><article class="seo-note wf-h-proof" data-wf="proof"><div class="seo-card"><div class="seo-top"><h3>Proof</h3></div><p>Include 3 to 4 sourced metrics, 3 to 5 customer stories, and 2 to 4 analyst cards. Keep all copy indexable.</p></div></article><article class="seo-note wf-h-integrations" data-wf="integrations"><div class="seo-card"><div class="seo-top"><h3>Integrations</h3></div><p>Center the section. Use descriptive labels or alt text and link to the integrations directory.</p></div></article><article class="seo-note wf-h-start" data-wf="start"><div class="seo-card"><div class="seo-top"><h3>Getting started</h3></div><p>Use a descriptive heading and three concrete paths. Do not use CTA copy as the only heading.</p></div></article><article class="seo-note wf-h-faq" data-wf="faq"><div class="seo-card"><div class="seo-top"><h3>FAQ</h3></div><p>Add 5 to 7 visible Q&amp;A pairs. Use FAQPage schema only when the visible content qualifies.</p></div></article><article class="seo-note wf-h-close" data-wf="close"><div class="seo-card"><div class="seo-top"><h3>Closing CTA</h3></div><p>Use a value sentence plus two descriptive CTAs. Do not make CTA copy the only heading.</p></div></article></aside>
+</div>
+</div>
+<div class="wireframe-option-block" id="step4-option-2">
+<div class="wf-option-label"><h3>Option 2: Solutions first</h3><p>Solutions come before the platform layers.</p></div><div aria-label="Section order" class="wf-option-sequence">Announcement, Hero, Menu of the month, Trust, Solutions, Data, Context, Agentic, Proof, Integrations, Getting Started, FAQ, Close</div>
+<div class="wf-board" data-wireframe-option="2">
+<div aria-label="Low fidelity homepage wireframe, option 2" class="wf-browser">
+<div class="wf-chrome"><div class="wf-dots"><i></i><i></i><i></i></div><div class="wf-address">elastic.co</div></div>
+<div class="wf-page">
+<section class="wire-section wf-h-ann" data-wf="announcement">
+<div class="announce-ph"><span class="announcement-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</span><span class="announcement-link">Lorem ipsum</span></div>
+</section>
+<section class="wire-section wf-h-hero" data-wf="hero">
+<div class="wire-inner hero-ph">
+<div class="hero-copy">
+<div class="wire-eyebrow">Lorem ipsum</div><h1 class="wire-h1">Lorem ipsum dolor sit amet</h1>
+<p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<div class="hero-actions"><span class="wire-button primary">Lorem ipsum</span><span class="wire-button">Dolor sit</span></div>
+</div>
+</div>
+</section>
+<section class="wire-section wf-h-menu" data-wf="menu">
+<div class="wire-inner menu-ph">
+
+<div class="menu-grid">
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card menu-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-menu-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="wire-link">Lorem ipsum</div></div>
+</div>
+</div>
+</section>
+<section class="wire-section wf-h-trust" data-wf="trust">
+<div class="wire-inner trust-ph">
+
+
+<div class="trust-head"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.</p></div><div class="trust-content"><div class="trust-stat"><div class="trust-number">00%</div><p class="wire-small">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p></div><div aria-label="Logo placeholders" class="logo-strip"><i>Logo</i><i>Logo</i><i>Logo</i><i>Logo</i><i>Logo</i></div></div></div>
+</section>
+<section class="wire-section wf-h-solutions" data-wf="solutions">
+<div class="wire-inner">
+<div class="section-head"><div class="section-copy-head"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2></div><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p></div>
+<div class="wire-grid wire-3">
+<div class="wire-card solution-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card solution-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis.</p><div class="wire-link">Lorem ipsum</div></div>
+<div class="wire-card solution-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras mattis consectetur.</p><div class="wire-link">Lorem ipsum</div></div>
+</div>
+</div>
+</section>
+<section class="wire-section wf-h-data" data-wf="data-layer">
+<div class="wire-inner platform-section-ph">
+<div class="platform-text"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p></div>
+<div class="simple-diagram">Diagram</div>
+</div>
+</section>
+<section class="wire-section wf-h-context" data-wf="context-layer">
+<div class="wire-inner platform-section-ph">
+<div class="platform-text"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas faucibus mollis interdum.</p></div>
+<div class="simple-diagram">Diagram</div>
+</div>
+</section>
+<section class="wire-section wf-h-agentic" data-wf="agentic-layer">
+<div class="wire-inner platform-section-ph">
+<div class="platform-text"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui, cras mattis consectetur purus sit amet.</p></div>
+<div class="simple-diagram">Diagram</div>
+</div>
+</section>
+<section class="wire-section wf-h-proof" data-wf="proof">
+<div class="wire-inner proof-ph">
+<div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.</p>
+<div class="metric-row"><div class="metric"><div class="metric-number">00x</div><p class="wire-small">Lorem ipsum dolor sit amet.</p></div><div class="metric"><div class="metric-number">00%</div><p class="wire-small">Lorem ipsum dolor sit amet.</p></div><div class="metric"><div class="metric-number">00M</div><p class="wire-small">Lorem ipsum dolor sit amet.</p></div></div>
+<div class="proof-grid"><div class="wire-card story-card"><div class="story-logo">Logo</div><div class="story-copy"><p class="story-quote">“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper nulla non metus auctor fringilla.”</p><div class="story-meta">Lorem ipsum dolor</div><span class="wire-button">Lorem ipsum</span></div></div><div class="analyst-stack"><div class="wire-card analyst-card"><div class="badge-ph">Logo</div><div><div class="analyst-name">Lorem ipsum dolor</div><p class="wire-small">Lorem ipsum, 2026</p></div></div><div class="wire-card analyst-card"><div class="badge-ph">Logo</div><div><div class="analyst-name">Lorem ipsum dolor</div><p class="wire-small">Lorem ipsum, 2026</p></div></div></div></div>
+</div>
+</section>
+<section class="wire-section wf-h-integrations" data-wf="integrations">
+<div class="wire-inner integration-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-h2">Lorem ipsum dolor sit amet</h2><p class="wire-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.</p><div class="simple-diagram integration-diagram">Diagram</div></div>
+</section>
+<section class="wire-section wf-h-start" data-wf="start">
+<div class="wire-inner start-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue.</p><div class="start-grid"><div class="wire-card start-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="simple-diagram small-diagram">Diagram</div></div><div class="wire-card start-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="simple-diagram small-diagram">Diagram</div></div><div class="wire-card start-card"><div class="wire-card-eyebrow">Lorem ipsum</div><h3 class="wire-card-title">Lorem ipsum</h3><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="simple-diagram small-diagram">Diagram</div></div></div></div>
+</section>
+<section class="wire-section wf-h-faq" data-wf="faq">
+<div class="wire-inner faq-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="wire-section-title">Lorem ipsum dolor sit amet</h2><p class="wire-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><div class="faq-list"><div class="faq-row"><span class="faq-question">Lorem ipsum dolor sit amet consectetur?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Maecenas sed diam eget risus varius?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Aenean lacinia bibendum nulla sed?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Cras justo odio dapibus ac facilisis?</span><i>+</i></div><div class="faq-row"><span class="faq-question">Vestibulum id ligula porta felis euismod?</span><i>+</i></div></div></div>
+</section>
+<section class="wire-section wf-h-close" data-wf="close">
+<div class="close-ph"><div class="wire-eyebrow">Lorem ipsum</div><h2 class="close-title">Lorem ipsum dolor sit amet</h2><p class="close-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui.</p><div class="close-actions"><span class="wire-button primary">Lorem ipsum</span><span class="wire-button">Dolor sit</span></div></div>
+</section>
+</div>
+</div>
+<div aria-hidden="true" class="wf-connectors">
+<div class="conn-head"></div>
+<div class="wf-connector wf-h-ann" data-wf="announcement"><span class="wf-node">01</span></div>
+<div class="wf-connector wf-h-hero" data-wf="hero"><span class="wf-node">02</span></div>
+<div class="wf-connector wf-h-menu" data-wf="menu"><span class="wf-node">03</span></div>
+<div class="wf-connector wf-h-trust" data-wf="trust"><span class="wf-node">04</span></div>
+<div class="wf-connector wf-h-solutions" data-wf="solutions"><span class="wf-node">05</span></div>
+<div class="wf-connector wf-h-data" data-wf="data-layer"><span class="wf-node">06</span></div>
+<div class="wf-connector wf-h-context" data-wf="context-layer"><span class="wf-node">07</span></div>
+<div class="wf-connector wf-h-agentic" data-wf="agentic-layer"><span class="wf-node">08</span></div>
+<div class="wf-connector wf-h-proof" data-wf="proof"><span class="wf-node">09</span></div>
+<div class="wf-connector wf-h-integrations" data-wf="integrations"><span class="wf-node">10</span></div>
+<div class="wf-connector wf-h-start" data-wf="start"><span class="wf-node">11</span></div>
+<div class="wf-connector wf-h-faq" data-wf="faq"><span class="wf-node">12</span></div>
+<div class="wf-connector wf-h-close" data-wf="close"><span class="wf-node">13</span></div>
+</div>
+<aside aria-label="SEO and LLMO annotations" class="wf-seo">
+<div class="seo-head">Section and SEO annotations</div>
+<article class="seo-note compact wf-h-ann" data-wf="announcement"><div class="seo-card"><div class="seo-top"><h3>Announcement</h3></div><p>Use one readable line and one supporting link. Keep the primary homepage message in the hero.</p></div></article>
+<article class="seo-note wf-h-hero" data-wf="hero"><div class="seo-card"><div class="seo-top"><h3>Hero</h3></div><p>Use one keyword-led H1. Name Elastic, Search, Observability, and Security in visible HTML.</p></div></article><article class="seo-note wf-h-menu" data-wf="menu"><div class="seo-card"><div class="seo-top"><h3>Menu of the month / carousel replacement</h3></div><p>Use four static cards immediately after the hero. Keep each card heading, supporting copy, and internal link visible in HTML.</p></div></article>
+<article class="seo-note wf-h-trust" data-wf="trust"><div class="seo-card"><div class="seo-top"><h3>Trust</h3></div><p>Customer logo row plus one sourced statistic. Keep the source and attribution visible.</p></div></article>
+<article class="seo-note wf-h-solutions" data-wf="solutions"><div class="seo-card"><div class="seo-top"><h3>Solutions: three ways in</h3></div><p>Search, Observability, and Security each get a descriptive H3, a problem statement, and an internal link.</p></div></article>
+<article class="seo-note wf-h-data" data-wf="data-layer"><div class="seo-card"><div class="seo-top"><h3>Platform layer 1: Data, store it</h3></div><p>Use a descriptive H2, a short paragraph, a simple diagram, and a link to deeper platform content.</p></div></article>
+<article class="seo-note wf-h-context" data-wf="context-layer"><div class="seo-card"><div class="seo-top"><h3>Platform layer 2: Context, understand it</h3></div><p>Use a descriptive H2, explain retrieval and grounding in visible text, and link to deeper product content.</p></div></article>
+<article class="seo-note wf-h-agentic" data-wf="agentic-layer"><div class="seo-card"><div class="seo-top"><h3>Platform layer 3: Agentic, act on it</h3></div><p>Use a descriptive H2, explain the capability in visible text, and clearly label any roadmap claim.</p></div></article>
+<article class="seo-note wf-h-proof" data-wf="proof"><div class="seo-card"><div class="seo-top"><h3>Proof</h3></div><p>Include 3 to 4 sourced metrics, 3 to 5 customer stories, and 2 to 4 analyst cards. Keep all copy indexable.</p></div></article>
+<article class="seo-note wf-h-integrations" data-wf="integrations"><div class="seo-card"><div class="seo-top"><h3>Integrations</h3></div><p>Center the section. Use descriptive labels or alt text and link to the integrations directory.</p></div></article>
+<article class="seo-note wf-h-start" data-wf="start"><div class="seo-card"><div class="seo-top"><h3>Getting started</h3></div><p>Use a descriptive heading and three concrete paths. Do not use CTA copy as the only heading.</p></div></article>
+<article class="seo-note wf-h-faq" data-wf="faq"><div class="seo-card"><div class="seo-top"><h3>FAQ</h3></div><p>Add 5 to 7 visible Q&amp;A pairs. Use FAQPage schema only when the visible content qualifies.</p></div></article>
+<article class="seo-note wf-h-close" data-wf="close"><div class="seo-card"><div class="seo-top"><h3>Closing CTA</h3></div><p>Use a value sentence plus two descriptive CTAs. Do not make CTA copy the only heading.</p></div></article>
+</aside>
+</div>
+</div>
+<div class="paneftr"><b>Step 4 of 6.</b> Both structural options use the same modules. Only the order of the platform layers and solution cards changes.</div>
+</div>
+</section>
+<!-- ================================================== STEP 4 ================================================== -->
+<section class="pane s4" id="s4">
+<div class="wrap">
+<div class="pane-intro">
+<h2>Step 4. Platform &amp; Solutions</h2>
+<p>One continuous scroll. The platform builds from the core out, folds into three dimensions, then slides to the right while the three solutions appear as tabs on the left. Click a tab and the same diagram threads that job through all three layers.</p>
+</div>
+<div class="orbit-band">
+<section class="scene" id="s4scene">
+<div class="stage">
+<div class="stage-head" id="s4head">
+<div class="ey"><span class="sq"></span>The Elastic platform</div>
+<div class="stage-title" id="s4title">One engine. Store it, understand it, act on it.</div>
+</div>
+<div aria-hidden="true" class="rail" id="s4rail">
+<button class="on" data-go="data"><span class="rd"></span>Data</button>
+<button data-go="context"><span class="rd"></span>Context</button>
+<button data-go="ai"><span class="rd"></span>AI</button>
+</div>
+<div class="buildcards" id="s4buildcards">
+<div class="bc left">
+<div class="slot">
+<div class="card on" data-layer="data"><div class="tp">One store</div><h4>Everything in one engine</h4><p>Logs, metrics, and vectors in one store. One API, one bill, not four systems to stitch together.</p></div>
+<div class="card" data-layer="context"><div class="tp">Relevance</div><h4>Hybrid retrieval in one query</h4><p>Keyword, vector, and reranking together, so answers beat vector search alone.</p></div>
+<div class="card" data-layer="ai"><div class="tp">Grounded</div><h4>Grounded by default</h4><p>Agents run on the same engine that stored and retrieved the data. No pipeline, no copies.</p></div>
+</div>
+<div class="slot">
+<div class="card on" data-layer="data"><div class="tp">Fast &amp; cheap</div><h4>Faster and lighter</h4><p>30x faster metrics than Prometheus, 75% less log storage with LogsDB.</p></div>
+<div class="card" data-layer="context"><div class="tp">Depth</div><h4>Fifteen years of search</h4><p>Retrieval is the hard part of AI, and it is Elastic\'s oldest strength, not a bolt-on.</p></div>
+<div class="card" data-layer="ai"><div class="tp">Build</div><h4>Build, do not assemble</h4><p>Agent Builder builds an agent on your data instead of wiring one together by hand.</p></div>
+</div>
+</div>
+<div class="bc right">
+<div class="slot">
+<div class="card on" data-layer="data"><div class="tp">No setup</div><h4>No schema needed</h4><p>Query any field even if you never mapped it. No upfront setup just to get an answer.</p></div>
+<div class="card" data-layer="context"><div class="tp">Trust</div><h4>Security lives in retrieval</h4><p>Document-level permissions mean an AI only surfaces data a user is allowed to see.</p></div>
+<div class="card" data-layer="ai"><div class="tp">Real work</div><h4>Agents that do real work <span class="soon">Soon</span></h4><p>Agents work alongside your engineers and analysts, finding root cause and triaging threats.</p></div>
+</div>
+<div class="slot">
+<div class="card on" data-layer="data"><div class="tp">Analytics</div><h4>The warehouse is built in</h4><p>Columnar storage runs analytics in the same engine. The separate warehouse is gone.</p></div>
+<div class="card" data-layer="context"><div class="tp">For agents</div><h4>Context built for agents <span class="soon">Soon</span></h4><p>An AI context map: relevant context, lower token cost, faster and more consistent.</p></div>
+<div class="card" data-layer="ai"><div class="tp">Open</div><h4>Open and connected</h4><p>Skills, workflows, memory, and MCP plug agents into the tools your team already uses.</p></div>
+</div>
+</div>
+</div>
+<div class="solpanel" id="s4solpanel">
+<div class="sp-ey">Three layers, three jobs</div>
+<div class="sp-lead">A solution is the platform aimed at a job</div>
+<div class="sp-intro">Not a separate product. The same three layers, pointed at one thing. Nothing new to learn, just a different target.</div>
+<div class="sp-tabs" id="s4tabs">
+<button class="sp-tab c-search active" data-sol="search"><span class="t-ey">Aimed at finding things</span><span class="t-name">Search</span><span class="t-body">Answers, not a list of results. The store holds your content, retrieval finds the right passage, agents answer from it.</span></button>
+<button class="sp-tab c-obs" data-sol="obs"><span class="t-ey">Aimed at your systems</span><span class="t-name">Observability</span><span class="t-body">Logs, metrics, and traces in one store. The agent layer shows up as an SRE that finds root cause with your team.</span></button>
+<button class="sp-tab c-sec" data-sol="sec"><span class="t-ey">Aimed at threats</span><span class="t-name">Security</span><span class="t-body">Detect, investigate, respond on one engine. The agent layer shows up as a SOC analyst that triages and responds with you.</span></button>
+</div>
+</div>
+<div class="orbit" id="s4orbit">
+<svg aria-label="The Elastic platform, three layers" role="img" viewbox="0 0 720 720">
+<defs><radialgradient cx="50%" cy="50%" id="s4hazeGrad" r="50%">
+<stop offset="0%" stop-color="#0B64DD" stop-opacity="0.06"></stop>
+<stop offset="60%" stop-color="#00776E" stop-opacity="0.03"></stop>
+<stop offset="100%" stop-color="#F7F9FB" stop-opacity="0"></stop>
+</radialgradient></defs>
+<circle cx="360" cy="360" id="s4haze" r="320"></circle>
+<g id="s4tiltg">
+<ellipse class="ring" cx="360" cy="360" id="s4r3" rx="290" ry="290"></ellipse>
+<ellipse class="ring" cx="360" cy="360" id="s4r2" rx="180" ry="180"></ellipse>
+<ellipse class="ring lit-data" cx="360" cy="360" id="s4r1" rx="90" ry="90"></ellipse>
+<circle class="core-dot" cx="360" cy="360" id="s4coreDot" r="16"></circle>
+<circle class="core-ring" cx="360" cy="360" id="s4coreRing" r="11"></circle>
+<g id="s4nodes">
+<rect class="node nd-data" data-r="90" data-th="215" height="10" width="10"></rect>
+<rect class="node nd-data" data-r="90" data-th="-35" height="10" width="10"></rect>
+<rect class="node nd-data" data-r="90" data-th="80" height="10" width="10"></rect>
+<rect class="node nd-ctx hidden" data-r="180" data-th="205" height="11" width="11"></rect>
+<rect class="node nd-ctx hidden" data-r="180" data-th="-40" height="11" width="11"></rect>
+<rect class="node nd-ctx hidden" data-r="180" data-th="140" height="11" width="11"></rect>
+<rect class="node nd-ctx hidden" data-r="180" data-th="45" height="11" width="11"></rect>
+<rect class="node nd-ai hidden" data-r="290" data-th="-108" height="9" width="9"></rect>
+<rect class="node nd-ai hidden" data-r="290" data-th="-50" height="9" width="9"></rect>
+<rect class="node nd-ai hidden" data-r="290" data-th="20" height="9" width="9"></rect>
+<rect class="node nd-ai hidden" data-r="290" data-th="128" height="9" width="9"></rect>
+<rect class="node nd-ai hidden" data-r="290" data-th="70" height="9" width="9"></rect>
+</g>
+<polyline class="thread" id="th-search" points="" stroke="#0B64DD"></polyline>
+<polyline class="thread" id="th-obs" points="" stroke="#00776E"></polyline>
+<polyline class="thread" id="th-sec" points="" stroke="#1C1E23"></polyline>
+<g id="s4tdots"></g>
+</g>
+<text class="blabel c-data" id="s4lbCore" text-anchor="middle" x="360" y="408">Data</text>
+<text class="blabel c-ctx dim" id="s4lbIter" text-anchor="middle" x="360" y="486">Context</text>
+<text class="blabel c-ai dim" id="s4lbDist" text-anchor="middle" x="360" y="590">Agents</text>
+<g id="s4edge"></g>
+</svg>
+<span class="orbit-chip" id="s4chip">Any cloud · on-prem · air-gapped</span>
+</div>
+</div>
+</section>
+</div>
+<div class="paneftr"><b>Step 5 of 6.</b> One continuous diagram: it builds, folds to 3D, and slides right; the three solutions are click tabs that thread each job through all three layers. The two "Soon" cards and the SRE/SOC agents are roadmap items from the internal keynote; confirm public clearance before shipping. Step 5 writes the final copy.</div>
+</div>
+<!-- two modules to be used later -->
+<div id="s4mods">
+<div class="modcap">Module · One platform. Every team</div>
+<section aria-label="Everything in one place" class="bento-track" id="bentoTrack">
+<h2 class="bento-lead">One platform.<br/>Every <span class="org">team</span></h2>
+<div class="bento-pin">
+<div class="bento-cols">
+<nav aria-label="Section navigation" class="bento-menu" id="bentoMenu">
+<button class="active" data-i="0"><span class="idx">01</span> Store any data</button>
+<button data-i="1"><span class="idx">02</span> Search &amp; relevance</button>
+<button data-i="2"><span class="idx">03</span> Understand context</button>
+<button data-i="3"><span class="idx">04</span> Observe &amp; secure</button>
+<button data-i="4"><span class="idx">05</span> Power any agent</button>
+</nav>
+<div class="bento-mid" id="bentoMid">
+<div class="bento-mid-track" id="bentoMidTrack">
+<div class="bento-state active" data-i="0"><h3 class="h3">Store any data<br/>in one engine</h3><p class="body">Logs, metrics, traces, and vectors in a single store. One API, one bill, nothing to stitch together.</p><ul><li>Structured and unstructured</li><li>No schema required</li><li>Columnar analytics built in</li><li>Petabyte scale</li></ul><a class="pill" href="#">placeholder copy</a></div>
+<div class="bento-state" data-i="1"><h3 class="h3">Search and<br/>relevance</h3><p class="body">Hybrid retrieval in one query: keyword, vector, and reranking together for answers that beat vector search alone.</p><ul><li>Fifteen years of search</li><li>Reranking built in</li><li>Relevance you can tune</li></ul><a class="pill" href="#">placeholder copy</a></div>
+<div class="bento-state" data-i="2"><h3 class="h3">Understand<br/>context</h3><p class="body">Retrieval that hands agents the right context, permission-aware, at lower token cost.</p><ul><li>Document-level security</li><li>Context built for agents</li><li>Consistent and fast</li></ul><a class="pill" href="#">placeholder copy</a></div>
+<div class="bento-state" data-i="3"><h3 class="h3">Observe and<br/>secure</h3><p class="body">The same engine, pointed at your systems and at threats, with agents that work alongside your team.</p><ul><li>Logs, metrics, traces</li><li>Detect, investigate, respond</li><li>SRE and SOC agents</li></ul><a class="pill" href="#">placeholder copy</a></div>
+<div class="bento-state" data-i="4"><h3 class="h3">Power any<br/>agent</h3><p class="body">Agents grounded on the same store and retrieval, built with Agent Builder, open and connected.</p><ul><li>Grounded by default</li><li>Skills, workflows, memory</li><li>MCP and open standards</li></ul><a class="pill" href="#">placeholder copy</a></div>
+</div>
+</div>
+<div class="bento-vis" id="bentoVis">
+<div class="bento-visual active" data-i="0"><div class="cascade">
+<div class="win" style="top:8%;width:300px"><span class="ic">▨</span> logs-prod-*</div>
+<div class="win" style="top:17%;width:290px"><span class="ic">▨</span> metrics-k8s-*</div>
+<div class="win" style="top:26%;width:280px"><span class="ic">▨</span> traces-apm-*</div>
+<div class="win" style="top:35%;width:270px"><span class="ic">▨</span> security-alerts</div>
+<div class="win" style="top:44%;width:262px"><span class="ic">▨</span> products-catalog</div>
+<div class="win" style="top:53%;width:252px"><span class="ic">▨</span> support-tickets</div>
+<div class="win" style="top:62%;width:244px"><span class="ic">▨</span> web-events</div>
+<div class="studio">
+<div class="studio-top"><div class="l"><span class="ic" style="width:26px;height:26px;border-radius:6px;background:#111"></span> Studio</div><div class="seg"><span class="on">Data</span><span>Query</span></div></div>
+<div class="studio-cols">
+<div class="studio-col"><div class="ch">Indices</div><div class="studio-row">logs</div><div class="studio-row">metrics</div><div class="studio-row sel">traces</div><div class="studio-row">alerts</div></div>
+<div class="studio-col"><div class="ch">Documents</div><div class="studio-row"><span class="doc"></span> SKU-1042</div><div class="studio-row sel"><span class="doc"></span> SKU-1043</div><div class="studio-row"><span class="doc"></span> SKU-1044</div><div class="studio-row"><span class="doc"></span> SKU-1045</div></div>
+<div class="studio-col"><div class="ch">● Indexed</div><div class="studio-brand">12,480</div></div>
+</div>
+</div>
+</div></div>
+<div class="bento-visual" data-i="1"><div class="vis-ph"><div class="ph-card">Search visual placeholder</div></div></div>
+<div class="bento-visual" data-i="2"><div class="vis-ph"><div class="ph-card">Context visual placeholder</div></div></div>
+<div class="bento-visual" data-i="3"><div class="vis-ph"><div class="ph-card">Observe + secure placeholder</div></div></div>
+<div class="bento-visual" data-i="4"><div class="vis-ph"><div class="ph-card">Agent visual placeholder</div></div></div>
+</div>
+</div>
+</div>
+</section>
+<div class="modgap"></div>
+<div class="modcap">Module A · One API, one query language</div>
+<div class="scaler"><div class="frame sec oa">
+<div class="head2" style="justify-content:center">
+<div class="col"><div class="h2">One engine. One query<br/>language. Every job.</div></div>
+<div class="col"><div class="h2sub">Click a panel. The same platform, pointed at observability,<br/>a raw query, or security, without changing tools.</div></div>
+</div>
+<div class="oa-row" id="oaRow">
+<div class="oa-panelbox pos-left active" data-i="0" role="button" tabindex="0">
+<div class="oa-face"><span class="brk" style="left:24px;top:24px;border-width:2px 0 0 2px"></span><span class="brk" style="right:24px;top:24px;border-width:2px 2px 0 0"></span><span class="brk" style="left:24px;bottom:24px;border-width:0 0 2px 2px"></span><span class="brk" style="right:24px;bottom:24px;border-width:0 2px 2px 0"></span><span class="oa-mono name">Observability</span><span class="oa-mono cta">[ click to view ]</span></div>
+<div class="oa-chat"><div class="oa-chdr"><span class="oa-mono">elastic client</span><div style="display:flex;gap:4px;align-items:center"><span class="oa-mono">Current Context:</span><span class="oa-mono oa-tag">Observability</span></div></div>
+<div class="oa-cbody"><div class="oa-codepanel"><span class="brk" style="left:-16px;top:-16px;border-width:2px 0 0 2px"></span><span class="brk" style="right:-16px;top:-16px;border-width:2px 2px 0 0"></span><span class="brk" style="left:-16px;bottom:-16px;border-width:0 0 2px 2px"></span><span class="brk" style="right:-16px;bottom:-16px;border-width:0 2px 2px 0"></span>
+<div class="oa-code"><span class="g">// find the slowest traces in the last hour</span>
+<span class="r">const</span><span class="b"> traces</span><span class="w"> = </span><span class="r">await</span><span class="w"> client.</span><span class="p">esql</span><span class="w">(</span>
+<span class="lb">  `FROM traces-apm-*</span>
+<span class="lb">   | WHERE duration &gt; 2s</span>
+<span class="lb">   | STATS p95 = PERCENTILE(duration, 95)</span>
+<span class="lb">       BY service`</span>
+<span class="w">)</span>
+<span class="g">// let the agent explain the spike</span>
+<span class="r">const</span><span class="b"> cause</span><span class="w"> = </span><span class="r">await</span><span class="w"> agent.</span><span class="p">investigate</span><span class="w">({</span>
+<span class="w">  context: </span><span class="lb">'observability'</span><span class="w">,</span>
+<span class="w">})</span></div></div></div>
+<div class="oa-cftr"><div style="display:flex;gap:4px;align-items:center"><span class="oa-mono">status:</span><span class="oa-mono oa-tag">enabled</span></div><span class="oa-mono">Same engine →</span></div></div>
+</div>
+<div class="oa-panelbox pos-mid" data-i="1" role="button" tabindex="0">
+<div class="oa-face"><span class="brk" style="left:24px;top:24px;border-width:2px 0 0 2px"></span><span class="brk" style="right:24px;top:24px;border-width:2px 2px 0 0"></span><span class="brk" style="left:24px;bottom:24px;border-width:0 0 2px 2px"></span><span class="brk" style="right:24px;bottom:24px;border-width:0 2px 2px 0"></span><span class="oa-mono name">ES|QL Console</span><span class="oa-mono cta">[ click to view ]</span></div>
+<div class="oa-chat"><div class="oa-chdr"><span class="oa-mono">query console</span><div style="display:flex;gap:4px;align-items:center"><span class="oa-mono">Current Context:</span><span class="oa-mono oa-tag">ES|QL</span></div></div>
+<div class="oa-cbody"><div class="oa-codepanel"><span class="brk" style="left:-16px;top:-16px;border-width:2px 0 0 2px"></span><span class="brk" style="right:-16px;top:-16px;border-width:2px 2px 0 0"></span><span class="brk" style="left:-16px;bottom:-16px;border-width:0 0 2px 2px"></span><span class="brk" style="right:-16px;bottom:-16px;border-width:0 2px 2px 0"></span>
+<div class="oa-code"><span class="g">-- ES|QL: query, filter, and aggregate in one language</span>
+<span class="r">FROM</span><span class="w"> logs-*</span>
+<span class="w">| </span><span class="r">WHERE</span><span class="w"> @timestamp &gt; </span><span class="lb">NOW() - 1 hour</span>
+<span class="w">| </span><span class="r">WHERE</span><span class="w"> status &gt;= </span><span class="b">500</span>
+<span class="w">| </span><span class="r">STATS</span><span class="w"> errors = </span><span class="p">COUNT</span><span class="w">(*) </span><span class="r">BY</span><span class="w"> service</span>
+<span class="w">| </span><span class="r">SORT</span><span class="w"> errors </span><span class="r">DESC</span>
+<span class="w">| </span><span class="r">LIMIT</span><span class="w"> </span><span class="b">10</span>
+<span class="g">-- same engine powers search + observability</span>
+<span class="g">-- + security, at petabyte scale</span></div></div></div>
+<div class="oa-cftr"><div style="display:flex;gap:4px;align-items:center"><span class="oa-mono">status:</span><span class="oa-mono oa-tag">enabled</span></div><span class="oa-mono">One language →</span></div></div>
+</div>
+<div class="oa-panelbox pos-right" data-i="2" role="button" tabindex="0">
+<div class="oa-face"><span class="brk" style="left:24px;top:24px;border-width:2px 0 0 2px"></span><span class="brk" style="right:24px;top:24px;border-width:2px 2px 0 0"></span><span class="brk" style="left:24px;bottom:24px;border-width:0 0 2px 2px"></span><span class="brk" style="right:24px;bottom:24px;border-width:0 2px 2px 0"></span><span class="oa-mono name">Security</span><span class="oa-mono cta">[ click to view ]</span></div>
+<div class="oa-chat"><div class="oa-chdr"><span class="oa-mono" style="color:#141414">elastic client</span><div style="display:flex;gap:4px;align-items:center"><span class="oa-mono" style="color:#141414">Current Context:</span><span class="oa-mono oa-tag" style="background:#fff;color:#1a3d6b">Security</span></div></div>
+<div class="oa-cbody"><div class="oa-codepanel"><span class="brk" style="left:-16px;top:-16px;border-width:2px 0 0 2px"></span><span class="brk" style="right:-16px;top:-16px;border-width:2px 2px 0 0"></span><span class="brk" style="left:-16px;bottom:-16px;border-width:0 0 2px 2px"></span><span class="brk" style="right:-16px;bottom:-16px;border-width:0 2px 2px 0"></span>
+<div class="oa-code"><span class="g">// correlate alerts into an attack chain</span>
+<span class="r">const</span><span class="b"> alerts</span><span class="w"> = </span><span class="r">await</span><span class="w"> client.</span><span class="p">esql</span><span class="w">(</span>
+<span class="lb">  `FROM .alerts-security.*</span>
+<span class="lb">   | WHERE @timestamp &gt; NOW() - 24h</span>
+<span class="lb">   | STATS hits = COUNT(*) BY host.name`</span>
+<span class="w">)</span>
+<span class="g">// agent confirms true positives</span>
+<span class="r">const</span><span class="b"> cases</span><span class="w"> = </span><span class="r">await</span><span class="w"> agent.</span><span class="p">triage</span><span class="w">({</span>
+<span class="w">  context: </span><span class="lb">'security'</span><span class="w">,</span>
+<span class="w">})</span></div></div></div>
+<div class="oa-cftr"><div style="display:flex;gap:4px;align-items:center"><span class="oa-mono" style="color:#141414">status:</span><span class="oa-mono oa-tag" style="background:#fff;color:#1a3d6b">enabled</span></div><span class="oa-mono" style="color:#141414">Same engine →</span></div></div>
+</div>
+</div>
+</div></div>
+</div>
+</section>
+<script>
+  document.querySelectorAll('.tab').forEach(function(t){
+    t.addEventListener('click', function(){
+      document.querySelectorAll('.tab').forEach(function(x){ x.classList.remove('on'); });
+      document.querySelectorAll('.pane').forEach(function(x){ x.classList.remove('on'); });
+      t.classList.add('on');
+      document.getElementById(t.dataset.pane).classList.add('on');
+      window.scrollTo({top:0, behavior:'smooth'});
+      if(t.dataset.pane==='s4'){ setTimeout(function(){ s4frame(); scaleAll(); }, 60); }
+    });
+  });
+
+  // ============ Step 4 wireframe and annotation tracing ============
+  (function(){
+    document.querySelectorAll('#sw .wf-board').forEach(function(board){
+      var items = Array.prototype.slice.call(board.querySelectorAll('[data-wf]'));
+      function setTrace(key, on){
+        items.forEach(function(el){ if(el.dataset.wf===key) el.classList.toggle('focus', on); });
+      }
+      items.forEach(function(el){
+        el.addEventListener('mouseenter', function(){ setTrace(el.dataset.wf, true); });
+        el.addEventListener('mouseleave', function(){ setTrace(el.dataset.wf, false); });
+        el.addEventListener('focusin', function(){ setTrace(el.dataset.wf, true); });
+        el.addEventListener('focusout', function(){ setTrace(el.dataset.wf, false); });
+      });
+    });
+  })();
+
+  // ============ Step 4: one continuous diagram ============
+  var CX=360, CY=360, SQ_MIN=0.52, TILT=-25;
+  var s4scene=document.getElementById('s4scene');
+  var orbit=document.getElementById('s4orbit');
+  var rings=[{el:document.getElementById('s4r1'),r:90},{el:document.getElementById('s4r2'),r:180},{el:document.getElementById('s4r3'),r:290}];
+  var nodes=Array.prototype.slice.call(document.querySelectorAll('#s4nodes .node'));
+  var activeSol='search';
+  function ease(t){ return t<.5 ? 2*t*t : 1-Math.pow(-2*t+2,2)/2; }
+  function clamp(v){ return Math.min(1,Math.max(0,v)); }
+
+  // folded-space point (pre-slide, in svg coords)
+  var A=TILT*Math.PI/180, ca=Math.cos(A), sa=Math.sin(A);
+  function Pf(r,deg,sq){ var t=deg*Math.PI/180,x=r*Math.cos(t),y=r*sq*Math.sin(t); return [CX+x*ca-y*sa, CY+x*sa+y*ca]; }
+
+  // build threads + edge labels (folded positions)
+  var SOL={ search:{el:document.getElementById('th-search'),a:[-56,-50,-44],color:'#0B64DD'},
+            obs:{el:document.getElementById('th-obs'),a:[205,200,196],color:'#00776E'},
+            sec:{el:document.getElementById('th-sec'),a:[86,100,120],color:'#1C1E23'} };
+  (function(){
+    var g=document.getElementById('s4tdots'), ns='http://www.w3.org/2000/svg', rr=[290,180,90];
+    Object.keys(SOL).forEach(function(k){
+      var sp=SOL[k], pts=[];
+      rr.forEach(function(r,i){ var q=Pf(r,sp.a[i],SQ_MIN); pts.push(q[0]+','+q[1]);
+        var c=document.createElementNS(ns,'circle'); c.setAttribute('cx',q[0]);c.setAttribute('cy',q[1]);c.setAttribute('r',6);
+        c.setAttribute('fill',sp.color);c.setAttribute('stroke','#fff');c.setAttribute('stroke-width',2);
+        c.setAttribute('class','tdot td-'+k); g.appendChild(c); });
+      sp.el.setAttribute('points', pts.join(' '));
+    });
+    var eg=document.getElementById('s4edge');
+    [[290,'Agents',8],[180,'Context',3],[90,'Data',-4]].forEach(function(s){
+      var q=Pf(s[0],s[2],SQ_MIN); var tx=document.createElementNS(ns,'text');
+      tx.setAttribute('x',q[0]+14);tx.setAttribute('y',q[1]+4);tx.setAttribute('class','elab');tx.textContent=s[1]; eg.appendChild(tx);
+    });
+  })();
+
+  function showThreads(on, sol){
+    Object.keys(SOL).forEach(function(k){
+      SOL[k].el.classList.toggle('on', on && k===sol);
+      document.querySelectorAll('.td-'+k).forEach(function(d){ d.classList.toggle('on', on && k===sol); });
+    });
+  }
+
+  function s4render(p){
+    var foldT = clamp((p-0.36)/0.14);
+    var slideT = clamp((p-0.52)/0.14);
+    var sq = 1-(1-SQ_MIN)*ease(foldT);
+    var ang = TILT*ease(foldT);
+    document.getElementById('s4tiltg').setAttribute('transform','rotate('+ang+' '+CX+' '+CY+')');
+    rings.forEach(function(rg){ rg.el.setAttribute('ry', rg.r*sq); });
+    nodes.forEach(function(n){ var r=+n.dataset.r, th=+n.dataset.th*Math.PI/180, sz=+n.getAttribute('width');
+      var x=CX+r*Math.cos(th), y=CY+r*sq*Math.sin(th); n.setAttribute('x',x-sz/2); n.setAttribute('y',y-sz/2); });
+
+    // slide the ONE diagram to the right + gently shrink
+    var st=ease(slideT);
+    var shift = st * (s4scene.clientWidth * 0.20);
+    var scale = 1 - 0.14*st;
+    orbit.style.transform = 'translate(calc(-50% + '+shift+'px), -50%) scale('+scale+')';
+
+    // fades
+    document.getElementById('s4head').style.opacity = String(1-st);
+    document.getElementById('s4rail').style.opacity = String(1-clamp(foldT*1.4));
+    document.getElementById('s4buildcards').style.opacity = String(1-clamp(foldT*1.3));
+    document.getElementById('s4buildcards').style.pointerEvents = foldT>0.2?'none':'auto';
+    ['s4lbCore','s4lbIter','s4lbDist'].forEach(function(id){ document.getElementById(id).style.opacity=String(1-foldT); });
+    document.querySelectorAll('#s4edge .elab').forEach(function(e){ e.classList.toggle('on', foldT>0.6); });
+    document.getElementById('s4chip').style.opacity = String(1-st);
+
+    var solMode = slideT>0.02;
+    document.getElementById('s4solpanel').classList.toggle('on', solMode);
+    showThreads(solMode, activeSol);
+  }
+
+  function s4phase(p){ if(p<0.13)return'data'; if(p<0.25)return'context'; if(p<0.36)return'ai'; return null; }
+  var curLayer=null;
+  function s4layer(ph){
+    if(ph===curLayer) return; curLayer=ph;
+    var idx={data:0,context:1,ai:2}[ph], isL=idx!==undefined, lit=isL?idx:2;
+    document.getElementById('s4r1').setAttribute('class','ring lit-data');
+    document.getElementById('s4r2').setAttribute('class', lit>=1?'ring lit-ctx':'ring');
+    document.getElementById('s4r3').setAttribute('class', lit>=2?'ring lit-ai':'ring');
+    document.getElementById('s4haze').classList.add('on');
+    if(isL){
+      document.getElementById('s4lbCore').classList.toggle('dim', ph!=='data');
+      document.getElementById('s4lbIter').classList.toggle('dim', ph!=='context');
+      document.getElementById('s4lbDist').classList.toggle('dim', ph!=='ai');
+      document.querySelectorAll('#s4nodes .nd-ctx').forEach(function(n){ n.classList.toggle('hidden', lit<1); });
+      document.querySelectorAll('#s4nodes .nd-ai').forEach(function(n){ n.classList.toggle('hidden', lit<2); });
+      document.querySelectorAll('#s4buildcards .card').forEach(function(c){ c.classList.toggle('on', c.dataset.layer===ph); });
+      document.getElementById('s4chip').textContent = ph==='data'?'Any cloud \u00B7 on-prem \u00B7 air-gapped':(ph==='context'?'Your data, permission-aware':'Your agents, grounded');
+      document.querySelectorAll('#s4rail button').forEach(function(b){ b.classList.toggle('on', b.dataset.go===ph); });
+    }
+  }
+
+  var tick=false;
+  function s4frame(){
+    if(!document.getElementById('s4').classList.contains('on')) return;
+    var total=s4scene.offsetHeight-window.innerHeight; if(total<=0) return;
+    var p=clamp((-s4scene.getBoundingClientRect().top)/total);
+    var ph=s4phase(p); if(ph) s4layer(ph); else { document.getElementById('s4r2').setAttribute('class','ring lit-ctx'); document.getElementById('s4r3').setAttribute('class','ring lit-ai'); }
+    s4render(p);
+  }
+
+  // tab clicks shift the thread on the diagram (no scroll)
+  document.querySelectorAll('#s4tabs .sp-tab').forEach(function(tb){
+    tb.addEventListener('click', function(){
+      activeSol=tb.dataset.sol;
+      document.querySelectorAll('#s4tabs .sp-tab').forEach(function(x){ x.classList.toggle('active', x===tb); });
+      showThreads(true, activeSol);
+    });
+  });
+  document.querySelectorAll('#s4rail button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var tf={data:0.05,context:0.19,ai:0.31}[b.dataset.go], total=s4scene.offsetHeight-window.innerHeight;
+      window.scrollTo({top:s4scene.offsetTop+total*tf, behavior:'smooth'});
+    });
+  });
+
+  window.addEventListener('scroll', function(){ if(tick)return; tick=true; requestAnimationFrame(function(){ tick=false; s4frame(); }); }, {passive:true});
+  window.addEventListener('resize', s4frame);
+  s4frame();
+
+  // ============ Module scalers + controllers ============
+  function scaleAll(){
+    document.querySelectorAll('#s4mods .scaler').forEach(function(sc){
+      var frame=sc.querySelector('.frame'); if(!frame) return;
+      var w=sc.clientWidth, factor=w/1920;
+      frame.style.transform='scale('+factor+')';
+      sc.style.height=(frame.getBoundingClientRect().height)+'px';
+    });
+  }
+  window.addEventListener('resize', scaleAll);
+  window.addEventListener('load', scaleAll);
+  document.fonts && document.fonts.ready.then(scaleAll);
+  scaleAll(); setTimeout(scaleAll,300);
+
+  (function(){
+    var track=document.getElementById('bentoTrack'); if(!track) return;
+    var N=5, pin=track.querySelector('.bento-pin'), lead=track.querySelector('.bento-lead');
+    var menu=document.querySelectorAll('#bentoMenu button');
+    var midTrack=document.getElementById('bentoMidTrack'), midWrap=document.getElementById('bentoMid');
+    var states=document.querySelectorAll('#bentoMidTrack .bento-state');
+    var visuals=document.querySelectorAll('#bentoVis .bento-visual');
+    var current=-1;
+    function sizeTrack(){ track.style.height = lead.offsetHeight + (N*window.innerHeight) + 'px'; }
+    function setActive(i){ if(i!==current){ current=i;
+      menu.forEach(function(b){ b.classList.toggle('active',+b.dataset.i===i); });
+      states.forEach(function(sx){ sx.classList.toggle('active',+sx.dataset.i===i); });
+      visuals.forEach(function(v){ v.classList.toggle('active',+v.dataset.i===i); }); } }
+    function onScroll(){ var vh=window.innerHeight, tr=track.getBoundingClientRect();
+      var scrolled=Math.max(0,-tr.top-lead.offsetHeight), total=N*vh-vh;
+      var p=total>0?Math.min(scrolled/total,0.99999):0;
+      var scrollable=midTrack.scrollHeight-midWrap.clientHeight;
+      midTrack.style.transform='translateY('+(-p*scrollable)+'px)'; setActive(Math.floor(p*N)); }
+    menu.forEach(function(b){ b.addEventListener('click',function(){ var i=+b.dataset.i, vh=window.innerHeight;
+      window.scrollTo({top:track.offsetTop+lead.offsetHeight+(i+0.5)*vh, behavior:'smooth'}); }); });
+    window.addEventListener('scroll', onScroll, {passive:true});
+    window.addEventListener('resize', function(){ sizeTrack(); onScroll(); });
+    window.addEventListener('load', function(){ sizeTrack(); onScroll(); });
+    sizeTrack(); onScroll();
+  })();
+
+  (function(){
+    var row=document.getElementById('oaRow'); if(!row) return;
+    var panels=row.querySelectorAll('.oa-panelbox');
+    function activate(i){ panels.forEach(function(p){ p.classList.toggle('active',+p.dataset.i===i); }); }
+    panels.forEach(function(p){ p.addEventListener('click',function(){ activate(+p.dataset.i); });
+      p.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); activate(+p.dataset.i); } }); });
+  })();
+</script>
+</body>
+</html>
